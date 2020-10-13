@@ -46,6 +46,13 @@
             warehouseCode:''
           }
       },
+      created() {
+          this.$ajax.get('http://localhost:8082/apply/getWarehouse',{
+            params: {
+              warehouse:""
+            }
+          })
+      },
       methods: {
         getCurId(row){
           console.log(row.warehouseCode);
