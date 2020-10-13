@@ -1,0 +1,133 @@
+<template>
+  <div>
+
+    <el-container>
+      <el-header>
+        <el-page-header @back="goBack" >
+        </el-page-header>
+      </el-header>
+      <el-main style="padding: 0">
+        <span>物料名称:</span>
+        <el-input v-model="materialName"   style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+        <el-button size="mini" type="success" @click="getMaterialName">查询</el-button>
+        <br><br>
+        <div class="table_div">
+          <el-table
+            :data="tableData"
+            border
+            size="mini"
+            @row-click="getCurId"
+            style="width: 100%;">
+            <el-table-column
+              label="代码"
+              prop = "id"
+              align="center">
+            </el-table-column>
+            <el-table-column
+              label="名称"
+              prop = "id"
+              align="center">
+            </el-table-column>
+            <el-table-column
+              label="类型"
+              prop = "id"
+              align="center">
+            </el-table-column>
+            <el-table-column
+              label="组代码"
+              prop = "id"
+              align="center">
+            </el-table-column>
+            <el-table-column
+              label="组名称"
+              prop = "id"
+              align="center">
+            </el-table-column>
+            <el-table-column
+              label="库存单位名称"
+              prop = "id"
+              align="center">
+            </el-table-column>
+            <el-table-column
+              label="图号"
+              prop = "id"
+              align="center">
+            </el-table-column>
+            <el-table-column
+              label="税码"
+              prop = "id"
+              align="center">
+            </el-table-column>
+            <el-table-column
+              label="物料信号"
+              prop = "id"
+              align="center">
+            </el-table-column>
+            <el-table-column
+              label="物料来源"
+              prop = "id"
+              align="center">
+            </el-table-column>
+          </el-table>
+        </div>
+      </el-main>
+    </el-container>
+
+  </div>
+</template>
+
+<script>
+
+    export default {
+        name: "SelectByCode",
+      data(){
+          return{
+            materialCode: '',
+            materialName:'',
+            materialType:'',
+            union:'',
+            tableData:[
+
+            ]
+          }
+      },
+
+      methods: {
+        getCurId(row){
+          this.materialCode=row.id;
+          this.materialName='五厘米',
+            this.materialType='类别',
+            this.union='个'
+
+          this.$router.push({
+            path:'/applyMain',
+            query: {
+              materialCode:this.materialCode,
+              materialName:this.materialName,
+              materialType:this.materialType,
+              union:this.union
+            }
+          })
+        },
+        getMaterialName(){
+          this.$ajax.get('http://localhost:8082/apply/material',{
+            params:{
+              name:this.materialName
+            }
+          }).then(res=>{
+
+          })
+        },
+
+        goBack(){
+          this.$router.go(-1)
+        }
+      }
+
+    }
+</script>
+
+<style scoped>
+
+
+</style>
