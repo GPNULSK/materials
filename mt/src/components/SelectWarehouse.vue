@@ -21,7 +21,14 @@
             style="width: 100%;">
             <el-table-column
               label="领料仓库"
-              prop = "warehouseCode"
+              prop = "dsca2"
+              align="center">
+            </el-table-column>
+
+            <el-table-column
+              label="仓库代码"
+              v-if="false"
+              prop = "cwar"
               align="center">
             </el-table-column>
           </el-table>
@@ -35,27 +42,35 @@
 
 <script>
     export default {
-        name: "SelectByWarehouse",
+        name: "SelectWarehouse",
       data(){
           return {
-            tableData:[
-              {warehouseCode:'B2'},
-              {warehouseCode:'B3'},
-            ],
+            tableData:[],
             warehouse:'',
-            warehouseCode:''
+
           }
+      },
+      created() {
+
+
+      },
+      mounted() {
+        this.$ajax.get('http://localhost:8081/getWarehouse').then(res=>{
+
+          let data=res.data
+          this.tableData=data
+
+        })
       },
       methods: {
         getCurId(row){
-          console.log(row.warehouseCode);
-          this.warehouse=row.warehouseCode
-          this.warehouseCode="166"
+          console.log(row.dsca2);
+          this.warehouse=row.dsca2
           this.$router.push({
             path:'/applyMain',
             query: {
               warehouse:this.warehouse,
-              warehouseCode:this.warehouseCode
+              warehouseCode:row.cwar
             }
           })
         },

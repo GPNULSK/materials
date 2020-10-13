@@ -20,52 +20,52 @@
             style="width: 100%;">
             <el-table-column
               label="代码"
-              prop = "id"
+              prop = "code"
               align="center">
             </el-table-column>
             <el-table-column
               label="名称"
-              prop = "id"
+              prop = "wlname"
               align="center">
             </el-table-column>
             <el-table-column
               label="类型"
-              prop = "id"
+              prop = "wltype"
               align="center">
             </el-table-column>
             <el-table-column
               label="组代码"
-              prop = "id"
+              prop = "wlgroupcode"
               align="center">
             </el-table-column>
             <el-table-column
               label="组名称"
-              prop = "id"
+              prop = "wlgroup"
               align="center">
             </el-table-column>
             <el-table-column
               label="库存单位名称"
-              prop = "id"
+              prop = "unitcn"
               align="center">
             </el-table-column>
             <el-table-column
               label="图号"
-              prop = "id"
+              prop = "tuhao"
               align="center">
             </el-table-column>
             <el-table-column
               label="税码"
-              prop = "id"
+              prop = "taxcode"
               align="center">
             </el-table-column>
             <el-table-column
               label="物料信号"
-              prop = "id"
+              prop = "signalcode"
               align="center">
             </el-table-column>
             <el-table-column
               label="物料来源"
-              prop = "id"
+              prop = "lyxx"
               align="center">
             </el-table-column>
           </el-table>
@@ -79,16 +79,14 @@
 <script>
 
     export default {
-        name: "SelectByCode",
+        name: "SelectMaterials",
       data(){
           return{
             materialCode: '',
             materialName:'',
             materialType:'',
             union:'',
-            tableData:[
-
-            ]
+            tableData:[]
           }
       },
 
