@@ -92,10 +92,10 @@
 
       methods: {
         getCurId(row){
-          this.materialCode=row.id;
-          this.materialName='五厘米',
-            this.materialType='类别',
-            this.union='个'
+          this.materialCode=row.code;
+          this.materialName=row.wlname,
+            this.materialType=row.wltype,
+            this.union=row.unitcn
 
           this.$router.push({
             path:'/applyMain',
@@ -108,12 +108,13 @@
           })
         },
         getMaterialName(){
-          this.$ajax.get('http://localhost:8082/apply/material',{
+          this.$ajax.get('http://localhost:8082/apply/getMaterialsList',{
             params:{
               name:this.materialName
             }
           }).then(res=>{
-
+            console.log(res.data)
+              this.tableData=res.data;
           })
         },
 

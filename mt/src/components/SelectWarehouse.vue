@@ -50,12 +50,8 @@
 
           }
       },
-      created() {
-
-
-      },
       mounted() {
-        this.$ajax.get('http://localhost:8081/getWarehouse').then(res=>{
+        this.$ajax.get('http://localhost:8082/apply/getWarehouse').then(res=>{
 
           let data=res.data
           this.tableData=data
