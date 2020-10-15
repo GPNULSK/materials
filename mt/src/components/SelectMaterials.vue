@@ -90,21 +90,20 @@
           }
       },
 
+
       methods: {
         getCurId(row){
           this.materialCode=row.code;
           this.materialName=row.wlname,
             this.materialType=row.wltype,
             this.union=row.unitcn
+          sessionStorage.setItem("materialCode",row.code);
+          sessionStorage.setItem("wlname",row.wlname);
+          sessionStorage.setItem("wltype",row.wltype);
+          sessionStorage.setItem("unitcn",row.unitcn);
 
           this.$router.push({
             path:'/applyMain',
-            query: {
-              materialCode:this.materialCode,
-              materialName:this.materialName,
-              materialType:this.materialType,
-              union:this.union
-            }
           })
         },
         getMaterialName(){

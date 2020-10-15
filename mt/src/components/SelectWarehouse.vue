@@ -31,6 +31,13 @@
               prop = "cwar"
               align="center">
             </el-table-column>
+
+            <el-table-column
+              label="物料代码"
+              v-if="false"
+              prop = "code"
+              align="center">
+            </el-table-column>
           </el-table>
         </div>
       </el-main>
@@ -51,23 +58,39 @@
           }
       },
       mounted() {
-        this.$ajax.get('http://localhost:8082/apply/getWarehouse').then(res=>{
-
+        let code=sessionStorage.getItem("materialCode")
+        console.log(code)
+        this.$ajax.get('http://localhost:8082/apply/getWarehouse',{
+          params: {
+            code: code
+          }
+        }).then(res=>{
           let data=res.data
+          console.log(data)
           this.tableData=data
-
         })
       },
       methods: {
         getCurId(row){
-          console.log(row.dsca2);
-          this.warehouse=row.dsca2
-          this.$router.push({
-            path:'/applyMain',
-            query: {
-              warehouse:this.warehouse,
+          sessionStorage.setItem("warehouseName",row.dsca2);
+          sessionStorage.setItem("warehouseCode",row.cwar)
+          //自动带出仓管员
+          this.$ajax.get('http://localhost:8080/apply/getWarehouseWorkerAuto',{
+            params: {
+              materialCode:this.code,
               warehouseCode:row.cwar
             }
+          }).then(res=>{
+            if(res.data!=null){
+
+            }
+          })
+          this.$router.push({
+            path:'/applyMain',
+            // query: {
+            //   warehouse:this.warehouse,
+            //   warehouseCode:row.cwar
+            // }
           })
         },
 

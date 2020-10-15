@@ -4,6 +4,8 @@ import index from '../components/Index'
 import applyMain from '../components/ApplyMain'
 import selectId from '../components/SelectMaterials'
 import selectByWarehouse from '../components/SelectWarehouse'
+import getDcharger from '../components/GetDeptCharger'
+import getWarehouseWorker from '../components/GetWarehouseWorker'
 
 Vue.use(Router)
 
@@ -24,6 +26,14 @@ export default new Router({
     {
       path: '/selectByWarehouse',
       component: selectByWarehouse
+    },
+    {
+      path: '/getDcharger',
+      component: getDcharger
+    },
+    {
+      path: '/getWarehouseWorker',
+      component: getWarehouseWorker
     }
   ]
 })

@@ -88,6 +88,13 @@
             v-model="useage"
            >
           </el-input>
+          <br><br>
+          <span>单位主管:</span>
+          <el-input v-on:click.native="toGetDeptCharger" v-model="charger" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+          <br><br>
+          <span>实物仓管:</span>
+          <el-input v-on:click.native="toGetWarehouseWorker" v-model="warehouseWorker" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+          <br><br>
         </el-form>
       </el-main>
       <!--main结束-->
@@ -106,14 +113,16 @@
         name: "ApplyMain",
       data(){
           return {
-            materialCode: this.$route.query.materialCode,
-            materialName:this.$route.query.materialName,
-            materialType:this.$route.query.materialType,
-            union:this.$route.query.union,
-            warehouseName:this.$route.query.warehouse,
-            warehouseCode:this.$route.query.warehouseCode,
+            materialCode: '',
+            materialName:'',
+            materialType:'',
+            union:'',
+            warehouseName:'',
+            warehouseCode:'',
             account:'',
             useage:'',
+            charger:'',
+            warehouseWorker:'',
 
             getMaterialMethod:[
               {
@@ -152,14 +161,34 @@
             path:"/selectId",
           })
         },
+        toGetDeptCharger(){
+          this.$router.push("/getDcharger")
+        },
 
         toSelectWarehouse(){
           this.$router.push('/selectByWarehouse')
+        },
+        toGetWarehouseWorker(){
+          this.$router.push("/getWarehouseWorker")
         },
         goBack(){
           this.$router.go(-1)
         }
       },
+      created() {
+        console.log("session长度"+sessionStorage.length)
+        if(sessionStorage.length>0){
+          this.materialCode=sessionStorage.getItem("materialCode");
+          this.materialName=sessionStorage.getItem("wlname");
+          this.materialType=sessionStorage.getItem("wltype");
+          this.union=sessionStorage.getItem("unitcn");
+          this.warehouseName=sessionStorage.getItem("warehouseName")
+          this.warehouseCode=sessionStorage.getItem("warehouseCode")
+          this.charger=sessionStorage.getItem("charger")
+          this.warehouseWorker=sessionStorage.getItem("warehouseWorker")
+          console.log(sessionStorage.getItem("materialCode"))
+        }
+      }
 
     }
 </script>
