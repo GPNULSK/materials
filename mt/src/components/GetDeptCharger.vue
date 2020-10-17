@@ -9,7 +9,7 @@
       <el-main>
         <span>单位主管:</span>
         <el-input v-model="charger"   style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
-        <el-button size="mini" type="success" @click="getMaterialName">查询</el-button>
+        <el-button size="mini" type="success" @click="getDeptCharger">查询</el-button>
         <br><br>
         <div class="table_div">
           <el-table
@@ -17,7 +17,7 @@
             border
             size="mini"
             @row-click="getCurRow"
-            :show-header="false"
+            :show-header="true"
             style="width: 100%;">
             <el-table-column
               label="员工编号"
@@ -77,7 +77,24 @@ export default {
   methods: {
     getCurRow(row){
       sessionStorage.setItem("charger",row.usnm)
+      this.$ajax.get('http://localhost:8082/apply/getChargerList',{
+        params: {
+          userId:row.usid,
+          username:row.usnm
+        }
+      })
       this.$router.push('/applyMain')
+    },
+    //输入名字搜索
+    getDeptCharger(){
+      this.$ajax.get('http://localhost:8082/apply/selectNameBySearch',{
+        params: {
+          name:this.charger,
+          roleDetail:'11'
+        }
+      }).then(res=>{
+        this.tableData=res.data
+      })
     },
     goBack(){
       this.$router.go(-1)
@@ -87,7 +104,7 @@ export default {
   created() {
     this.$ajax.get('http://localhost:8082/apply/getDeptCharger',{
       params: {
-        userDept:'计算机中心',
+        userDept:'信息化推进办公室',
       }
     }).then(res=>{
       console.log(res.data)

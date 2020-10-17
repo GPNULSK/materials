@@ -76,14 +76,21 @@
           sessionStorage.setItem("warehouseName",row.dsca2);
           sessionStorage.setItem("warehouseCode",row.cwar)
           //自动带出仓管员
-          this.$ajax.get('http://localhost:8080/apply/getWarehouseWorkerAuto',{
+          this.$ajax.get('http://localhost:8082/apply/getWarehouseWorkerAuto',{
             params: {
-              materialCode:this.code,
+              materialCode:sessionStorage.getItem("materialCode"),
               warehouseCode:row.cwar
             }
           }).then(res=>{
+            console.log("选择仓库时执行的自动带出仓管员方法")
             if(res.data!=null){
-
+              sessionStorage.setItem("warehouseWorker",res.data.nsmn)
+            }
+          })
+          this.$ajax.get('http://localhost:8082/apply/getWarehouseCode',{
+            params: {
+                code:row.cwar,
+              warehouseName1:row.dsca2
             }
           })
           this.$router.push({

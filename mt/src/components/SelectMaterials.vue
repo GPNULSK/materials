@@ -95,12 +95,14 @@
         getCurId(row){
           this.materialCode=row.code;
           this.materialName=row.wlname,
-            this.materialType=row.wltype,
-            this.union=row.unitcn
+
+          this.materialType=row.wltype,
+          this.union=row.unitcn
           sessionStorage.setItem("materialCode",row.code);
           sessionStorage.setItem("wlname",row.wlname);
-          sessionStorage.setItem("wltype",row.wltype);
+          sessionStorage.setItem("wltype",row.wlgroup);
           sessionStorage.setItem("unitcn",row.unitcn);
+          sessionStorage.setItem("source",row.lyxx);//物料来源
 
           this.$router.push({
             path:'/applyMain',

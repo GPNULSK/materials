@@ -17,26 +17,34 @@
         <br><br>
 
         <span>物料名称:</span>
-        <el-input :disabled="true" v-model="materialName" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+        <el-input :disabled="true" v-model="materialName" style="width: 200px" size="mini" ></el-input>
         <br><br>
 
         <span>物料类型:</span>
-        <el-input :disabled="true" v-model="materialType"  style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+        <el-input :disabled="true" v-model="materialType"  style="width: 200px" size="mini" p></el-input>
         <br><br>
 
         <span>计量单位:</span>
-        <el-input :disabled="true" v-model="union"  style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+        <el-input :disabled="true" v-model="union"  style="width: 200px" size="mini" ></el-input>
         <br><br>
 
-        <span>需&nbsp;求&nbsp;量:</span>
-        <el-input :required="true" v-model="account"  style="width: 200px" size="mini" placeholder="请选择仓库"></el-input>
-        <br><br>
+
         <span>领料仓库</span>
         <el-input v-on:click.native="toSelectWarehouse" v-model="warehouseName" style="width: 200px" size="mini" placeholder="请选择仓库"></el-input>
         <br><br>
         <span>仓库代码:</span>
-        <el-input :disabled="true" v-model="warehouseCode"  style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+        <el-input :disabled="true" v-model="warehouseCode"  style="width: 200px" size="mini" ></el-input>
         <br><br>
+
+          <span>库&nbsp;存&nbsp;量:</span>
+          <el-input :required="true" v-model="storeAccount"  style="width: 200px" size="mini" placeholder="请输入需求量"></el-input>
+          <br><br>
+
+        <span>需&nbsp;求&nbsp;量:</span>
+        <el-input :required="true" v-model="account"  style="width: 200px" size="mini" placeholder="请输入需求量"></el-input>
+        <br><br>
+
+
 <!--          领料方式-->
         <template>
           <span>领料方式:</span>
@@ -85,7 +93,7 @@
             autosize
             placeholder="请输入内容"
             style="width: 80%"
-            v-model="useage"
+            v-model="usage"
            >
           </el-input>
           <br><br>
@@ -101,7 +109,8 @@
       <div style="padding: 20px 0 0 0"></div>
       <!--footer开始-->
       <el-footer>
-        <el-button type="success">提交</el-button>
+        <el-button type="success" @click="submitApply">提交</el-button>
+        <el-button type="warming" @click="clearSession">重置</el-button>
       </el-footer>
     </el-container>
   </div>
@@ -120,9 +129,11 @@
             warehouseName:'',
             warehouseCode:'',
             account:'',
-            useage:'',
+            usage:'',
             charger:'',
             warehouseWorker:'',
+            source:'',
+            storeAccount:'',
 
             getMaterialMethod:[
               {
@@ -136,12 +147,12 @@
             ],
             isUrgentForm:[
               {
-                value:'是',
-                label:'是'
+                value:'正常',
+                label:'正常'
               },
               {
-                value:'否',
-                label:'否'
+                value:'紧急',
+                label:'紧急'
               }
             ],
             reasonCodeForm:[
@@ -156,27 +167,91 @@
           }
       },
       methods: {
+
+        submitApply(){
+          this.$ajax.get('http://localhost:8082/apply/applySave',{
+            params: {
+              materialCode:this.materialCode,//物料代码
+              materialName:this.materialName,//物料名称
+              materialGroup:this.materialType,//物料组
+              union:this.union,//单位
+              account:this.account,//数量
+              warehouseName:this.warehouseName, //仓库名称
+              warehouseCode:this.warehouseCode, //仓库代码
+              source:this.source,  //物料来源baan
+              getMaterialMethod:this.getMaterialMethodVal, //领料方式
+              isUrgent:this.isUrgent, //是否紧急
+              usage:this.usage, //用途
+              userId:'114200563',
+              userDept:'信息化推进办公室',
+
+            }
+          })
+        },
+
+
+        storeSomeDate(){
+          sessionStorage.setItem("account",this.account)
+          sessionStorage.setItem("isUrgent",this.isUrgent)
+          sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
+
+          console.log(sessionStorage.getItem("account"))
+        },
+
+
         toSelectId(){
+
+          console.log(this.account)
+          sessionStorage.setItem("account",this.account)
+          sessionStorage.setItem("isUrgent",this.isUrgent)
+          sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
+          if(sessionStorage.getItem("account")==null){
+
+          }
+          if(sessionStorage.getItem("isUrgent")==null){
+
+          }
+          if(sessionStorage.getItem("getMaterialMethod")==null){
+
+          }
           this.$router.push({
             path:"/selectId",
           })
         },
         toGetDeptCharger(){
+          sessionStorage.setItem("account",this.account)
+          sessionStorage.setItem("isUrgent",this.isUrgent)
+          sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
           this.$router.push("/getDcharger")
         },
 
         toSelectWarehouse(){
+          sessionStorage.setItem("account",this.account)
+          sessionStorage.setItem("isUrgent",this.isUrgent)
+          sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
           this.$router.push('/selectByWarehouse')
         },
         toGetWarehouseWorker(){
+          this.storeSomeDate()
           this.$router.push("/getWarehouseWorker")
         },
         goBack(){
+          this.storeSomeDate()
           this.$router.go(-1)
-        }
+        },
+        clearSession(){
+          alert("session清楚")
+          console.log(sessionStorage.length)
+          sessionStorage.clear();
+
+        },
+
+
       },
-      created() {
-        console.log("session长度"+sessionStorage.length)
+      mounted() {
+          console.log("执行mounter")
+          console.log("account的值"+this.account)
+          console.log(sessionStorage.getItem("account"))
         if(sessionStorage.length>0){
           this.materialCode=sessionStorage.getItem("materialCode");
           this.materialName=sessionStorage.getItem("wlname");
@@ -186,10 +261,13 @@
           this.warehouseCode=sessionStorage.getItem("warehouseCode")
           this.charger=sessionStorage.getItem("charger")
           this.warehouseWorker=sessionStorage.getItem("warehouseWorker")
+          this.source=sessionStorage.getItem("source")
+          this.account=sessionStorage.getItem("account")
+          this.isUrgent=sessionStorage.getItem("isUrgent")
+          this.getMaterialMethodVal=sessionStorage.getItem("getMaterialMethod")
           console.log(sessionStorage.getItem("materialCode"))
         }
       }
-
     }
 </script>
 
