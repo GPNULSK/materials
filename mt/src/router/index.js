@@ -16,6 +16,10 @@ export default new Router({
       component:index
     },
     {
+      path: '/index',
+      component: index
+    },
+    {
       path: '/applyMain',
       component: applyMain
     },

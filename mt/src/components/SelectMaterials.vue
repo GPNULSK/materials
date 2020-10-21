@@ -71,6 +71,14 @@
           </el-table>
         </div>
       </el-main>
+      <el-footer>
+        <el-pagination
+          background
+          @current-change="currentPage"
+          layout="prev, pager, next"
+          :total=totalPage>
+        </el-pagination>
+      </el-footer>
     </el-container>
 
   </div>
@@ -86,6 +94,9 @@
             materialName:'',
             materialType:'',
             union:'',
+            curPage:'1',
+            totalPage:'',
+            totalRecord:'',
             tableData:[]
           }
       },
@@ -103,6 +114,7 @@
           sessionStorage.setItem("wltype",row.wlgroup);
           sessionStorage.setItem("unitcn",row.unitcn);
           sessionStorage.setItem("source",row.lyxx);//物料来源
+          sessionStorage.setItem("materialGroupCode",row.wlgroupcode)
 
           this.$router.push({
             path:'/applyMain',
@@ -111,11 +123,33 @@
         getMaterialName(){
           this.$ajax.get('http://localhost:8082/apply/getMaterialsList',{
             params:{
-              name:this.materialName
+              name:this.materialName,
+              curPage:this.curPage
             }
           }).then(res=>{
             console.log(res.data)
-              this.tableData=res.data;
+            let data=res.data;
+            this.tableData=data.materials
+            let pageList=data.pageInfo
+			      console.log(pageList)
+            this.totalPage=pageList[0]
+            this.totalRecord=pageList[1]
+			      console.log(pageList[0])
+
+          })
+        },
+        currentPage(val){
+          this.curPage=val
+          this.$ajax.get('http://localhost:8082/apply/getMaterialsList',{
+            params:{
+              name:this.materialName,
+              curPage:this.curPage
+            }
+          }).then(res=>{
+            console.log(res.data)
+            let data=res.data;
+            this.tableData=data.materials
+
           })
         },
 
@@ -129,5 +163,8 @@
 
 <style scoped>
 
+.el-footer {
+  padding: 0;
+}
 
 </style>

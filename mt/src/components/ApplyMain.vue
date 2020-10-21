@@ -11,7 +11,7 @@
 
       <!--   main开始-->
       <el-main style="padding:0">
-        <el-form>
+        <el-form  :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <span>物料代码:</span>
         <el-input v-on:click.native="toSelectId" v-model="materialCode" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
         <br><br>
@@ -164,11 +164,21 @@
             getMaterialMethodVal:'',
             isUrgent:'',
             reasonCode:'',
+            rules:{
+              name:{required: true,message:'此项为必填',trigger: 'blur'},
+            }
+
           }
       },
       methods: {
 
         submitApply(){
+          if(this.materialName==''||this.warehouseName==''||this.isUrgent==''||
+            this.getMaterialMethodVal==''||this.usage==''||this.account==''||this.charger==''||this.warehouseWorker==''){
+            this.$message.error('所有项均为必填项')
+            return
+            alert('return后面代码')
+          }
           this.$ajax.get('http://localhost:8082/apply/applySave',{
             params: {
               materialCode:this.materialCode,//物料代码
@@ -184,7 +194,17 @@
               usage:this.usage, //用途
               userId:'114200563',
               userDept:'信息化推进办公室',
-
+              username:'林盛凯',
+            }
+          }).then(res=>{
+            if (res.data=='success'){
+              this.$message({
+                message:'申请成功，等到审批',
+                type:"success"
+              })
+              this.$router.replace('/index')
+            }else {
+              this.$message.error('保存失败，请稍后再试')
             }
           })
         },
@@ -243,7 +263,6 @@
           alert("session清楚")
           console.log(sessionStorage.length)
           sessionStorage.clear();
-
         },
 
 

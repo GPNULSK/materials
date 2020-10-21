@@ -101,7 +101,11 @@ export default {
     }
   },
   mounted() {
-    this.$ajax.get('http://localhost:8082/apply/getWarehouseWorker13').then(res=>{
+    this.$ajax.get('http://localhost:8082/apply/getWarehouseWorker13',{
+      params: {
+        wlgroupCode:sessionStorage.getItem("materialGroupCode"),
+      }
+    }).then(res=>{
       console.log(res.data)
       this.tableData=res.data
     })

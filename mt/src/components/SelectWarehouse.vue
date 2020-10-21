@@ -25,6 +25,11 @@
               prop = "dsca2"
               align="center">
             </el-table-column>
+            <el-table-column
+              label="库存量"
+              prop = "QHND"
+              align="center">
+            </el-table-column>
 
             <el-table-column
               label="仓库代码"
@@ -55,6 +60,7 @@
           return {
             tableData:[],
             warehouse:'',
+            inventory:0,
 
           }
       },
@@ -75,6 +81,7 @@
         getCurId(row){
           sessionStorage.setItem("warehouseName",row.dsca2);
           sessionStorage.setItem("warehouseCode",row.cwar)
+          this.inventory=row.QHND
           //自动带出仓管员
           this.$ajax.get('http://localhost:8082/apply/getWarehouseWorkerAuto',{
             params: {
@@ -82,15 +89,16 @@
               warehouseCode:row.cwar
             }
           }).then(res=>{
-            console.log("选择仓库时执行的自动带出仓管员方法")
             if(res.data!=null){
               sessionStorage.setItem("warehouseWorker",res.data.nsmn)
             }
           })
+          //
           this.$ajax.get('http://localhost:8082/apply/getWarehouseCode',{
             params: {
-                code:row.cwar,
-              warehouseName1:row.dsca2
+              code:row.cwar,
+              warehouseName1:row.dsca2,
+              inventory:this.inventory
             }
           })
           this.$router.push({
