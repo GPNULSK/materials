@@ -27,7 +27,7 @@
             </el-table-column>
             <el-table-column
               label="库存量"
-              prop = "QHND"
+              prop = "qhnd"
               align="center">
             </el-table-column>
 
@@ -81,7 +81,8 @@
         getCurId(row){
           sessionStorage.setItem("warehouseName",row.dsca2);
           sessionStorage.setItem("warehouseCode",row.cwar)
-          this.inventory=row.QHND
+          this.inventory=row.qhnd
+		      sessionStorage.setItem("inventory",row.qhnd)
           //自动带出仓管员
           this.$ajax.get('http://localhost:8082/apply/getWarehouseWorkerAuto',{
             params: {

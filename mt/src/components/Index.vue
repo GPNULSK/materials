@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-button @click="toApplyMain">领料申请</el-button>
-    <el-button type="primary">我的申请</el-button>
+    <el-button type="primary" @click="toApplications">我的申请</el-button>
     <el-button type="success">我的审批</el-button>
   </div>
 
@@ -13,6 +13,9 @@
       methods: {
         toApplyMain(){
           this.$router.push("/applyMain")
+        },
+        toApplications(){
+          this.$router.push('/applications')
         }
       },
 

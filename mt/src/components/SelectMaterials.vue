@@ -74,9 +74,9 @@
       <el-footer>
         <el-pagination
           background
-          @current-change="currentPage"
+		      @current-change="currentPage"
           layout="prev, pager, next"
-          :total=totalPage>
+          :total=totalRecord>
         </el-pagination>
       </el-footer>
     </el-container>
@@ -94,7 +94,7 @@
             materialName:'',
             materialType:'',
             union:'',
-            curPage:'1',
+            curPage:1,
             totalPage:'',
             totalRecord:'',
             tableData:[]
@@ -139,6 +139,7 @@
           })
         },
         currentPage(val){
+          alert(val)
           this.curPage=val
           this.$ajax.get('http://localhost:8082/apply/getMaterialsList',{
             params:{

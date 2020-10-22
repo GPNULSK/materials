@@ -6,6 +6,7 @@ import selectId from '../components/SelectMaterials'
 import selectByWarehouse from '../components/SelectWarehouse'
 import getDcharger from '../components/GetDeptCharger'
 import getWarehouseWorker from '../components/GetWarehouseWorker'
+import applications from '../components/MyApplications'
 
 Vue.use(Router)
 
@@ -38,6 +39,10 @@ export default new Router({
     {
       path: '/getWarehouseWorker',
       component: getWarehouseWorker
+    },
+    {
+      path: '/applications',
+      component: applications
     }
   ]
 })

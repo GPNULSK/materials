@@ -203,6 +203,7 @@
                 type:"success"
               })
               this.$router.replace('/index')
+              sessionStorage.clear();
             }else {
               this.$message.error('保存失败，请稍后再试')
             }
@@ -260,17 +261,13 @@
           this.$router.go(-1)
         },
         clearSession(){
-          alert("session清楚")
-          console.log(sessionStorage.length)
           sessionStorage.clear();
+          local.read();
         },
 
 
       },
       mounted() {
-          console.log("执行mounter")
-          console.log("account的值"+this.account)
-          console.log(sessionStorage.getItem("account"))
         if(sessionStorage.length>0){
           this.materialCode=sessionStorage.getItem("materialCode");
           this.materialName=sessionStorage.getItem("wlname");
@@ -284,6 +281,7 @@
           this.account=sessionStorage.getItem("account")
           this.isUrgent=sessionStorage.getItem("isUrgent")
           this.getMaterialMethodVal=sessionStorage.getItem("getMaterialMethod")
+		      this.storeAccount=sessionStorage.getItem("inventory")
           console.log(sessionStorage.getItem("materialCode"))
         }
       }
