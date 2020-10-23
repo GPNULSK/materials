@@ -9,17 +9,8 @@
           <template slot-scope="scope">
             <el-button
               size="mini"
-              @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-            <br><br>
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-            <br><br>
-            <el-button
-              size="mini"
-              type="primary"
-              @click="handleDelete(scope.$index, scope.row)">查看</el-button>
+              @click="toAudit(scope.$index, scope.row)">审核</el-button>
+
           </template>
         </el-table-column>
         <el-table-column
@@ -66,7 +57,7 @@
           prop="deptName"
           label="领料部门">
         </el-table-column>
-		<el-table-column
+        <el-table-column
           prop="warehouseWorkerId.usnm"
           label="实物仓管员">
         </el-table-column>
@@ -91,54 +82,49 @@
           prop="id"
           label="单号">
         </el-table-column>
-
-
       </el-table>
     </template>
+
+    <el-button @click="t1">条状</el-button>
   </div>
 </template>
 
 <script>
-  export default {
-  name: "MyApplications",
+export default {
+  name: "AuditList",
+
   data(){
     return{
-      tableData:[
-       
-      ],
+      tableData:[],
     }
   },
-    methods: {
-    //删除申请单，需要参数：用户名，工号，申请单号
-      handleDelete(index,row){
-        this.$ajax.get('http://localhost:8082/applications/applyDelete',{
-          params: {
-            username:'林盛凯',
-            userId:'114200563',
-            applyId:row.id
-          }
-        }).then(res=>{
-          //实现异步删除的效果
-          this.$ajax.get('http://localhost:8082/applications/applyList').then(res=>{
-            console.log(res.data.applyDate)
-            this.tableData=res.data
-          })
+  methods:{
+    toAudit(index,row){
 
-          this.$message({
-            message:'删除成功',
-            type:'success'
-          })
-        })
-      }
-    },
-    created() {
-    //发起请求得到我的申请列表
-      this.$ajax.get('http://localhost:8082/applications/applyList').then(res=>{
-        console.log(res.data.applyDate)
-		    this.tableData=res.data
+      this.$router.push({
+        path:'/audit',
+        query:{
+          id:row.id
+        }
       })
+    },
+    t1(){
+      this.$router.push('/audit')
     }
+  },
+
+  created() {
+    this.$ajax.get('http://localhost:8082/applications/auditList',{
+      params: {
+        username:'林盛凯',
+        uid:'114200563'
+      }
+    }).then(res=>{
+      console.log(res.data)
+      this.tableData=res.data
+    })
   }
+}
 </script>
 
 <style scoped>

@@ -2,7 +2,7 @@
   <div>
     <el-button @click="toApplyMain">领料申请</el-button>
     <el-button type="primary" @click="toApplications">我的申请</el-button>
-    <el-button type="success">我的审批</el-button>
+    <el-button type="success" @click="toChargerAudit">主管审批</el-button>
   </div>
 
 </template>
@@ -16,6 +16,10 @@
         },
         toApplications(){
           this.$router.push('/applications')
+        },
+
+        toChargerAudit(){
+          this.$router.push('/auditList')
         }
       },
 

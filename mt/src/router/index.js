@@ -7,6 +7,8 @@ import selectByWarehouse from '../components/SelectWarehouse'
 import getDcharger from '../components/GetDeptCharger'
 import getWarehouseWorker from '../components/GetWarehouseWorker'
 import applications from '../components/MyApplications'
+import auditList from '../components/AuditList'
+import audit from '../components/Audit'
 
 Vue.use(Router)
 
@@ -43,6 +45,14 @@ export default new Router({
     {
       path: '/applications',
       component: applications
+    },
+    {
+      path: '/auditList',
+      component: auditList
+    },
+    {
+      path: '/audit',
+      component: audit
     }
   ]
 })
