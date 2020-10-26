@@ -4,10 +4,10 @@
     "reportVersion": 1,
     "event": "Allocation failed - JavaScript heap out of memory",
     "trigger": "FatalError",
-    "filename": "report.20201022.184935.2900.0.001.json",
-    "dumpEventTime": "2020-10-22T18:49:35Z",
-    "dumpEventTimeStamp": "1603363775180",
-    "processId": 2900,
+    "filename": "report.20201026.155514.7032.0.001.json",
+    "dumpEventTime": "2020-10-26T15:55:14Z",
+    "dumpEventTimeStamp": "1603698914550",
+    "processId": 7032,
     "cwd": "E:\\WebProjects\\materials\\mt",
     "commandLine": [
       "C:\\Program Files\\nodejs\\node.exe",
@@ -52,74 +52,74 @@
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 863730,
+        "user": 143302,
         "nice": 0,
-        "sys": 566190,
-        "idle": 10494358,
-        "irq": 55458
+        "sys": 84692,
+        "idle": 1192175,
+        "irq": 7846
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 503602,
+        "user": 126563,
         "nice": 0,
-        "sys": 136157,
-        "idle": 11284067,
-        "irq": 358
+        "sys": 39842,
+        "idle": 1253312,
+        "irq": 78
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 942012,
+        "user": 173363,
         "nice": 0,
-        "sys": 518640,
-        "idle": 10463049,
-        "irq": 1123
+        "sys": 89466,
+        "idle": 1156763,
+        "irq": 124
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 325964,
+        "user": 52993,
         "nice": 0,
-        "sys": 110183,
-        "idle": 11487430,
-        "irq": 187
+        "sys": 20763,
+        "idle": 1345711,
+        "irq": 15
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 883090,
+        "user": 129028,
         "nice": 0,
-        "sys": 431857,
-        "idle": 10608504,
-        "irq": 1138
+        "sys": 61823,
+        "idle": 1228492,
+        "irq": 280
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 215218,
+        "user": 44756,
         "nice": 0,
-        "sys": 76159,
-        "idle": 11631949,
-        "irq": 187
+        "sys": 19141,
+        "idle": 1355321,
+        "irq": 46
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 739616,
+        "user": 148341,
         "nice": 0,
-        "sys": 374386,
-        "idle": 10809200,
-        "irq": 1076
+        "sys": 84271,
+        "idle": 1186481,
+        "irq": 156
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 237620,
+        "user": 51761,
         "nice": 0,
-        "sys": 121914,
-        "idle": 11563542,
-        "irq": 436
+        "sys": 21543,
+        "idle": 1345664,
+        "irq": 62
       }
     ],
     "networkInterfaces": [
@@ -177,275 +177,79 @@
   },
   "nativeStack": [
     {
-      "pc": "0x000000013fb819f9",
-      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10873"
+      "pc": "0x000000013f1e19f9",
+      "symbol": ""
     },
     {
-      "pc": "0x000000013fb85e1c",
-      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+28316"
+      "pc": "0x000000013f1e5e1c",
+      "symbol": ""
     },
     {
-      "pc": "0x000000013fb84dd8",
-      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+24152"
+      "pc": "0x000000013f1e4dd8",
+      "symbol": ""
     },
     {
-      "pc": "0x000000013fc834cb",
-      "symbol": "v8::base::CPU::has_sse+38363"
+      "pc": "0x000000013f2e34cb",
+      "symbol": ""
     },
     {
-      "pc": "0x0000000140499f4e",
-      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+      "pc": "0x000000013faf9f4e",
+      "symbol": ""
     },
     {
-      "pc": "0x0000000140482021",
-      "symbol": "v8::SharedArrayBuffer::Externalize+833"
+      "pc": "0x000000013fae2021",
+      "symbol": ""
     },
     {
-      "pc": "0x000000014034e57c",
-      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+      "pc": "0x000000013f9ae57c",
+      "symbol": ""
     },
     {
-      "pc": "0x0000000140356521",
-      "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3761"
+      "pc": "0x000000013f98a4d3",
+      "symbol": ""
     },
     {
-      "pc": "0x000000014034bb13",
-      "symbol": "v8::internal::Heap::CollectGarbage+1283"
+      "pc": "0x000000013f9887db",
+      "symbol": ""
     },
     {
-      "pc": "0x000000014034a184",
-      "symbol": "v8::internal::Heap::AddRetainedMap+2452"
+      "pc": "0x000000013f9b3d5d",
+      "symbol": ""
     },
     {
-      "pc": "0x000000014036b36d",
-      "symbol": "v8::internal::Factory::NewFillerObject+61"
+      "pc": "0x000000013f9b5a94",
+      "symbol": ""
     },
     {
-      "pc": "0x00000001400d0c51",
-      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+1665"
+      "pc": "0x000000013f9abb13",
+      "symbol": ""
     },
     {
-      "pc": "0x00000001408e4ddd",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+546637"
+      "pc": "0x000000013f9aa184",
+      "symbol": ""
     },
     {
-      "pc": "0x0000000140865934",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+25252"
+      "pc": "0x000000013f9cb36d",
+      "symbol": ""
     },
     {
-      "pc": "0x000000014094eaa3",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+979987"
+      "pc": "0x000000013f730adf",
+      "symbol": ""
     },
     {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
+      "pc": "0x000000013ff44ddd",
+      "symbol": ""
     },
     {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x00000001408630bc",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+14892"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x00000001408630bc",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+14892"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x00000001408672c1",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+31793"
-    },
-    {
-      "pc": "0x0000000140866eac",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+30748"
-    },
-    {
-      "pc": "0x00000001403a7c33",
-      "symbol": "v8::internal::Execution::CallWasm+1395"
-    },
-    {
-      "pc": "0x00000001403a75b6",
-      "symbol": "v8::internal::Execution::Call+182"
-    },
-    {
-      "pc": "0x000000014047862d",
-      "symbol": "v8::Function::Call+605"
-    },
-    {
-      "pc": "0x000000013fcff982",
-      "symbol": "node::CallbackScope::~CallbackScope+770"
-    },
-    {
-      "pc": "0x000000013fcffc44",
-      "symbol": "node::CallbackScope::~CallbackScope+1476"
-    },
-    {
-      "pc": "0x000000013fcf8d33",
-      "symbol": "v8::internal::interpreter::BytecodeNode::operand_scale+179"
-    },
-    {
-      "pc": "0x000000013fbf0fd0",
-      "symbol": "v8::internal::Debug::break_frame_id+18992"
-    },
-    {
-      "pc": "0x000000013fbf17cc",
-      "symbol": "v8::internal::Debug::break_frame_id+21036"
-    },
-    {
-      "pc": "0x000000013fbec9e5",
-      "symbol": "v8::internal::Debug::break_frame_id+1093"
-    },
-    {
-      "pc": "0x000000013fd1f4a2",
-      "symbol": "uv_thread_self+2722"
-    },
-    {
-      "pc": "0x000000013fd1f517",
-      "symbol": "uv_thread_self+2839"
-    },
-    {
-      "pc": "0x000000013fd2232f",
-      "symbol": "uv_pipe_pending_type+3471"
-    },
-    {
-      "pc": "0x000000013fd2c67c",
-      "symbol": "uv_loop_init+860"
-    },
-    {
-      "pc": "0x000000013fd2c9a4",
-      "symbol": "uv_run+244"
-    },
-    {
-      "pc": "0x000000013fc4ad43",
-      "symbol": "v8::internal::Scope::locals+31043"
-    },
-    {
-      "pc": "0x000000013fcaa3d3",
-      "symbol": "node::Start+275"
-    },
-    {
-      "pc": "0x000000013fb567ac",
-      "symbol": "RC4_options+339628"
-    },
-    {
-      "pc": "0x000000014099be08",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+1296248"
-    },
-    {
-      "pc": "0x00000000771e570d",
-      "symbol": "BaseThreadInitThunk+13"
-    },
-    {
-      "pc": "0x000000007744385d",
-      "symbol": "RtlUserThreadStart+29"
+      "pc": "0x0000007189c480ec",
+      "symbol": ""
     }
   ],
   "javascriptHeap": {
-    "totalMemory": 6754304,
-    "totalCommittedMemory": 6754304,
-    "usedMemory": 5842200,
-    "availableMemory": 2191347512,
+    "totalMemory": 149352448,
+    "totalCommittedMemory": 149352448,
+    "usedMemory": 110146680,
+    "availableMemory": 2085156912,
     "memoryLimit": 2197815296,
     "heapSpaces": {
       "read_only_space": {
@@ -456,38 +260,38 @@
         "available": 0
       },
       "new_space": {
-        "memorySize": 1048576,
-        "committedMemory": 1048576,
-        "capacity": 1047456,
-        "used": 1047400,
-        "available": 56
+        "memorySize": 33554432,
+        "committedMemory": 33554432,
+        "capacity": 16759296,
+        "used": 14960,
+        "available": 16744336
       },
       "old_space": {
-        "memorySize": 1982464,
-        "committedMemory": 1982464,
-        "capacity": 1904288,
-        "used": 1901840,
-        "available": 2448
+        "memorySize": 84033536,
+        "committedMemory": 84033536,
+        "capacity": 79635712,
+        "used": 79591008,
+        "available": 44704
       },
       "code_space": {
-        "memorySize": 430080,
-        "committedMemory": 430080,
-        "capacity": 171232,
-        "used": 163776,
-        "available": 7456
+        "memorySize": 954368,
+        "committedMemory": 954368,
+        "capacity": 290240,
+        "used": 290240,
+        "available": 0
       },
       "map_space": {
         "memorySize": 528384,
         "committedMemory": 528384,
-        "capacity": 527520,
-        "used": 250960,
-        "available": 276560
+        "capacity": 266640,
+        "used": 266640,
+        "available": 0
       },
       "large_object_space": {
-        "memorySize": 1294336,
-        "committedMemory": 1294336,
-        "capacity": 1286824,
-        "used": 1286824,
+        "memorySize": 29970432,
+        "committedMemory": 29970432,
+        "capacity": 29948240,
+        "used": 29948240,
         "available": 0
       },
       "code_large_object_space": {
@@ -498,26 +302,26 @@
         "available": 0
       },
       "new_large_object_space": {
-        "memorySize": 1159168,
-        "committedMemory": 1159168,
-        "capacity": 1155808,
-        "used": 1155808,
-        "available": 0
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 16759296,
+        "used": 0,
+        "available": 16759296
       }
     }
   },
   "resourceUsage": {
-    "userCpuSeconds": 0.452,
-    "kernelCpuSeconds": 0.234,
-    "cpuConsumptionPercent": 68.6,
-    "maxRss": 63098880,
+    "userCpuSeconds": 1.7,
+    "kernelCpuSeconds": 0.14,
+    "cpuConsumptionPercent": 184,
+    "maxRss": 187310080,
     "pageFaults": {
-      "IORequired": 18300,
+      "IORequired": 79675,
       "IONotRequired": 0
     },
     "fsActivity": {
-      "reads": 69,
-      "writes": 3
+      "reads": 71,
+      "writes": 1
     }
   },
   "libuv": [
@@ -823,8 +627,6 @@
     "C:\\Windows\\system32\\dhcpcsvc6.DLL",
     "C:\\Windows\\system32\\dhcpcsvc.DLL",
     "C:\\Windows\\system32\\NLAapi.dll",
-    "C:\\Windows\\system32\\napinsp.dll",
-    "C:\\Windows\\system32\\pnrpnsp.dll",
-    "C:\\Windows\\System32\\winrnr.dll"
+    "C:\\Windows\\system32\\napinsp.dll"
   ]
 }

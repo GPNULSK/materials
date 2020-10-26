@@ -88,8 +88,8 @@ export default {
     getWarehouseWorker(){
       this.$ajax.get('http://localhost:8082/apply/selectNameBySearch',{
         params: {
-          name:this.charger,
-          roleDetail:'11'
+          name:this.warehouseWorker,
+          roleDetail:'13'
         }
       }).then(res=>{
         this.tableData=res.data

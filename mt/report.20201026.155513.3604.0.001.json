@@ -4,10 +4,10 @@
     "reportVersion": 1,
     "event": "Allocation failed - JavaScript heap out of memory",
     "trigger": "FatalError",
-    "filename": "report.20201022.184932.5864.0.001.json",
-    "dumpEventTime": "2020-10-22T18:49:32Z",
-    "dumpEventTimeStamp": "1603363772184",
-    "processId": 5864,
+    "filename": "report.20201026.155513.3604.0.001.json",
+    "dumpEventTime": "2020-10-26T15:55:13Z",
+    "dumpEventTimeStamp": "1603698913364",
+    "processId": 3604,
     "cwd": "E:\\WebProjects\\materials\\mt",
     "commandLine": [
       "C:\\Program Files\\nodejs\\node.exe",
@@ -52,74 +52,74 @@
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 863278,
+        "user": 143271,
         "nice": 0,
-        "sys": 565784,
-        "idle": 10492221,
-        "irq": 55442
+        "sys": 84646,
+        "idle": 1191067,
+        "irq": 7846
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 502682,
+        "user": 126298,
         "nice": 0,
-        "sys": 135814,
-        "idle": 11282335,
-        "irq": 358
+        "sys": 39733,
+        "idle": 1252500,
+        "irq": 78
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 941372,
+        "user": 172833,
         "nice": 0,
-        "sys": 518406,
-        "idle": 10460927,
-        "irq": 1123
+        "sys": 89419,
+        "idle": 1156154,
+        "irq": 124
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 325340,
+        "user": 52993,
         "nice": 0,
-        "sys": 109824,
-        "idle": 11485417,
-        "irq": 187
+        "sys": 20763,
+        "idle": 1344525,
+        "irq": 15
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 881967,
+        "user": 128451,
         "nice": 0,
-        "sys": 431311,
-        "idle": 10607178,
-        "irq": 1138
+        "sys": 61682,
+        "idle": 1228024,
+        "irq": 280
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 215062,
+        "user": 44756,
         "nice": 0,
-        "sys": 76019,
-        "idle": 11629250,
-        "irq": 187
+        "sys": 19141,
+        "idle": 1354135,
+        "irq": 46
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 739616,
+        "user": 147920,
         "nice": 0,
-        "sys": 374386,
-        "idle": 10806204,
-        "irq": 1076
+        "sys": 84115,
+        "idle": 1185872,
+        "irq": 156
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 236871,
+        "user": 51761,
         "nice": 0,
-        "sys": 121446,
-        "idle": 11561764,
-        "irq": 436
+        "sys": 21543,
+        "idle": 1344479,
+        "irq": 62
       }
     ],
     "networkInterfaces": [
@@ -177,267 +177,79 @@
   },
   "nativeStack": [
     {
-      "pc": "0x000000013fb819f9",
+      "pc": "0x000000013f1e19f9",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fb85e1c",
+      "pc": "0x000000013f1e5e1c",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fb84dd8",
+      "pc": "0x000000013f1e4dd8",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fc834cb",
+      "pc": "0x000000013f2e34cb",
       "symbol": ""
     },
     {
-      "pc": "0x0000000140499f4e",
+      "pc": "0x000000013faf9f4e",
       "symbol": ""
     },
     {
-      "pc": "0x0000000140482021",
+      "pc": "0x000000013fae2021",
       "symbol": ""
     },
     {
-      "pc": "0x000000014034e57c",
+      "pc": "0x000000013f9ae57c",
       "symbol": ""
     },
     {
-      "pc": "0x0000000140356521",
+      "pc": "0x000000013f98a4d3",
       "symbol": ""
     },
     {
-      "pc": "0x000000014034bb13",
+      "pc": "0x000000013f9887db",
       "symbol": ""
     },
     {
-      "pc": "0x000000014034a184",
+      "pc": "0x000000013f9b3d5d",
       "symbol": ""
     },
     {
-      "pc": "0x0000000140371e1f",
+      "pc": "0x000000013f9b5a94",
       "symbol": ""
     },
     {
-      "pc": "0x00000001400d0e93",
+      "pc": "0x000000013f9abb13",
       "symbol": ""
     },
     {
-      "pc": "0x00000001408e4ddd",
+      "pc": "0x000000013f9aa184",
       "symbol": ""
     },
     {
-      "pc": "0x00000001408f916e",
+      "pc": "0x000000013f9cb36d",
       "symbol": ""
     },
     {
-      "pc": "0x0000000140869d8c",
+      "pc": "0x000000013f730adf",
       "symbol": ""
     },
     {
-      "pc": "0x0000000140869d8c",
+      "pc": "0x000000013ff44ddd",
       "symbol": ""
     },
     {
-      "pc": "0x0000000140869d8c",
+      "pc": "0x000001c5d323804c",
       "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x00000001408630bc",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x00000001408630bc",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140869d8c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x00000001408672c1",
-      "symbol": ""
-    },
-    {
-      "pc": "0x0000000140866eac",
-      "symbol": ""
-    },
-    {
-      "pc": "0x00000001403a7c33",
-      "symbol": ""
-    },
-    {
-      "pc": "0x00000001403a75b6",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000014047862d",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fcff982",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fcffc44",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fcf8d33",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fbf0fd0",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fbf17cc",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fbec9e5",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fd1f4a2",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fd1f517",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fd2232f",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fd2c67c",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fd2c9a4",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fc4ad43",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fcaa3d3",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000013fb567ac",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000014099be08",
-      "symbol": ""
-    },
-    {
-      "pc": "0x00000000771e570d",
-      "symbol": "BaseThreadInitThunk+13"
-    },
-    {
-      "pc": "0x000000007744385d",
-      "symbol": "RtlUserThreadStart+29"
     }
   ],
   "javascriptHeap": {
-    "totalMemory": 5599232,
-    "totalCommittedMemory": 5599232,
-    "usedMemory": 3160448,
-    "availableMemory": 2194216528,
+    "totalMemory": 146993152,
+    "totalCommittedMemory": 146993152,
+    "usedMemory": 110838216,
+    "availableMemory": 2084203624,
     "memoryLimit": 2197815296,
     "heapSpaces": {
       "read_only_space": {
@@ -448,38 +260,38 @@
         "available": 0
       },
       "new_space": {
-        "memorySize": 1048576,
-        "committedMemory": 1048576,
-        "capacity": 1047456,
-        "used": 92992,
-        "available": 954464
+        "memorySize": 33554432,
+        "committedMemory": 33554432,
+        "capacity": 16759296,
+        "used": 2020064,
+        "available": 14739232
       },
       "old_space": {
-        "memorySize": 2244608,
-        "committedMemory": 2244608,
-        "capacity": 2189512,
-        "used": 1649392,
-        "available": 540120
+        "memorySize": 81936384,
+        "committedMemory": 81936384,
+        "capacity": 78339720,
+        "used": 78291776,
+        "available": 47944
       },
       "code_space": {
-        "memorySize": 430080,
-        "committedMemory": 430080,
-        "capacity": 160256,
-        "used": 160256,
+        "memorySize": 692224,
+        "committedMemory": 692224,
+        "capacity": 275744,
+        "used": 275744,
         "available": 0
       },
       "map_space": {
         "memorySize": 528384,
         "committedMemory": 528384,
-        "capacity": 200000,
-        "used": 200000,
+        "capacity": 266800,
+        "used": 266800,
         "available": 0
       },
       "large_object_space": {
-        "memorySize": 491520,
-        "committedMemory": 491520,
-        "capacity": 480640,
-        "used": 480640,
+        "memorySize": 29970432,
+        "committedMemory": 29970432,
+        "capacity": 29948240,
+        "used": 29948240,
         "available": 0
       },
       "code_large_object_space": {
@@ -490,26 +302,26 @@
         "available": 0
       },
       "new_large_object_space": {
-        "memorySize": 544768,
-        "committedMemory": 544768,
-        "capacity": 1047456,
-        "used": 541576,
-        "available": 505880
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 16759296,
+        "used": 0,
+        "available": 16759296
       }
     }
   },
   "resourceUsage": {
-    "userCpuSeconds": 0.234,
-    "kernelCpuSeconds": 0.156,
-    "cpuConsumptionPercent": 39,
-    "maxRss": 35475456,
+    "userCpuSeconds": 1.7,
+    "kernelCpuSeconds": 0.202,
+    "cpuConsumptionPercent": 190.2,
+    "maxRss": 188096512,
     "pageFaults": {
-      "IORequired": 11031,
+      "IORequired": 77142,
       "IONotRequired": 0
     },
     "fsActivity": {
-      "reads": 57,
-      "writes": 2
+      "reads": 72,
+      "writes": 1
     }
   },
   "libuv": [
@@ -813,10 +625,6 @@
     "C:\\Windows\\System32\\wship6.dll",
     "C:\\Windows\\system32\\bcryptprimitives.dll",
     "C:\\Windows\\system32\\dhcpcsvc6.DLL",
-    "C:\\Windows\\system32\\dhcpcsvc.DLL",
-    "C:\\Windows\\system32\\NLAapi.dll",
-    "C:\\Windows\\system32\\napinsp.dll",
-    "C:\\Windows\\system32\\pnrpnsp.dll",
-    "C:\\Windows\\System32\\winrnr.dll"
+    "C:\\Windows\\system32\\dhcpcsvc.DLL"
   ]
 }

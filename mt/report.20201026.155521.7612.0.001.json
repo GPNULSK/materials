@@ -4,10 +4,10 @@
     "reportVersion": 1,
     "event": "Allocation failed - JavaScript heap out of memory",
     "trigger": "FatalError",
-    "filename": "report.20201022.193433.8856.0.001.json",
-    "dumpEventTime": "2020-10-22T19:34:33Z",
-    "dumpEventTimeStamp": "1603366473668",
-    "processId": 8856,
+    "filename": "report.20201026.155521.7612.0.001.json",
+    "dumpEventTime": "2020-10-26T15:55:21Z",
+    "dumpEventTimeStamp": "1603698921975",
+    "processId": 7612,
     "cwd": "E:\\WebProjects\\materials\\mt",
     "commandLine": [
       "C:\\Program Files\\nodejs\\node.exe",
@@ -52,74 +52,74 @@
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 920078,
+        "user": 145112,
         "nice": 0,
-        "sys": 659260,
-        "idle": 13043758,
-        "irq": 63648
+        "sys": 85519,
+        "idle": 1196964,
+        "irq": 7878
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 528141,
+        "user": 128201,
         "nice": 0,
-        "sys": 153442,
-        "idle": 13941060,
-        "irq": 452
+        "sys": 40217,
+        "idle": 1258725,
+        "irq": 78
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 1032149,
+        "user": 176109,
         "nice": 0,
-        "sys": 633332,
-        "idle": 12957037,
-        "irq": 1326
+        "sys": 90293,
+        "idle": 1160616,
+        "irq": 124
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 340035,
+        "user": 53399,
         "nice": 0,
-        "sys": 115175,
-        "idle": 14167184,
-        "irq": 187
+        "sys": 20810,
+        "idle": 1352684,
+        "irq": 15
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 957612,
+        "user": 131025,
         "nice": 0,
-        "sys": 535879,
-        "idle": 13128778,
-        "irq": 1341
+        "sys": 62447,
+        "idle": 1233297,
+        "irq": 280
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 228369,
+        "user": 44803,
         "nice": 0,
-        "sys": 86876,
-        "idle": 14306898,
-        "irq": 202
+        "sys": 19141,
+        "idle": 1362699,
+        "irq": 46
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 798740,
+        "user": 150993,
         "nice": 0,
-        "sys": 440609,
-        "idle": 13382670,
-        "irq": 1310
+        "sys": 85192,
+        "idle": 1190334,
+        "irq": 156
       },
       {
         "model": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
         "speed": 3591,
-        "user": 252175,
+        "user": 51792,
         "nice": 0,
-        "sys": 136095,
-        "idle": 14233624,
-        "irq": 468
+        "sys": 21621,
+        "idle": 1352981,
+        "irq": 62
       }
     ],
     "networkInterfaces": [
@@ -177,79 +177,79 @@
   },
   "nativeStack": [
     {
-      "pc": "0x000000013f6319f9",
+      "pc": "0x000000013f1e19f9",
       "symbol": ""
     },
     {
-      "pc": "0x000000013f635e1c",
+      "pc": "0x000000013f1e5e1c",
       "symbol": ""
     },
     {
-      "pc": "0x000000013f634dd8",
+      "pc": "0x000000013f1e4dd8",
       "symbol": ""
     },
     {
-      "pc": "0x000000013f7334cb",
+      "pc": "0x000000013f2e34cb",
       "symbol": ""
     },
     {
-      "pc": "0x000000013ff49f4e",
+      "pc": "0x000000013faf9f4e",
       "symbol": ""
     },
     {
-      "pc": "0x000000013ff32021",
+      "pc": "0x000000013fae2021",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fdfe57c",
+      "pc": "0x000000013f9ae57c",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fdda4d3",
+      "pc": "0x000000013f98a4d3",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fdd87db",
+      "pc": "0x000000013f9887db",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fe03d5d",
+      "pc": "0x000000013f9b3d5d",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fe05a94",
+      "pc": "0x000000013f9b5a94",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fdfbb13",
+      "pc": "0x000000013f9abb13",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fdfa184",
+      "pc": "0x000000013f9aa184",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fe1b36d",
+      "pc": "0x000000013f9cb36d",
       "symbol": ""
     },
     {
-      "pc": "0x000000013fb80adf",
+      "pc": "0x000000013f730adf",
       "symbol": ""
     },
     {
-      "pc": "0x0000000140394ddd",
+      "pc": "0x000000013ff44ddd",
       "symbol": ""
     },
     {
-      "pc": "0x000000b3ae37519a",
+      "pc": "0x0000039d164e3e78",
       "symbol": ""
     }
   ],
   "javascriptHeap": {
-    "totalMemory": 107933696,
-    "totalCommittedMemory": 107933696,
-    "usedMemory": 66832592,
-    "availableMemory": 2129608880,
+    "totalMemory": 124710912,
+    "totalCommittedMemory": 124710912,
+    "usedMemory": 83620928,
+    "availableMemory": 2112808168,
     "memoryLimit": 2197815296,
     "heapSpaces": {
       "read_only_space": {
@@ -263,21 +263,21 @@
         "memorySize": 33554432,
         "committedMemory": 33554432,
         "capacity": 16759296,
-        "used": 93704,
-        "available": 16665592
+        "used": 126280,
+        "available": 16633016
       },
       "old_space": {
-        "memorySize": 42876928,
-        "committedMemory": 42876928,
-        "capacity": 36090552,
-        "used": 36079616,
-        "available": 10936
+        "memorySize": 59654144,
+        "committedMemory": 59654144,
+        "capacity": 52814464,
+        "used": 52794448,
+        "available": 20016
       },
       "code_space": {
         "memorySize": 692224,
         "committedMemory": 692224,
-        "capacity": 412000,
-        "used": 412000,
+        "capacity": 452928,
+        "used": 452928,
         "available": 0
       },
       "map_space": {
@@ -311,12 +311,12 @@
     }
   },
   "resourceUsage": {
-    "userCpuSeconds": 1.138,
-    "kernelCpuSeconds": 0.124,
-    "cpuConsumptionPercent": 126.2,
-    "maxRss": 138526720,
+    "userCpuSeconds": 1.482,
+    "kernelCpuSeconds": 0.202,
+    "cpuConsumptionPercent": 168.4,
+    "maxRss": 157245440,
     "pageFaults": {
-      "IORequired": 60677,
+      "IORequired": 67083,
       "IONotRequired": 0
     },
     "fsActivity": {
