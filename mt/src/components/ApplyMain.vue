@@ -37,7 +37,7 @@
         <br><br>
 
           <span>库&nbsp;存&nbsp;量:</span>
-          <el-input :required="true" v-model="storeAccount"  style="width: 200px" size="mini" placeholder="请输入需求量"></el-input>
+          <el-input :disabled="true" :required="true" v-model="storeAccount"  style="width: 200px" size="mini" placeholder="请输入需求量"></el-input>
           <br><br>
 
         <span>需&nbsp;求&nbsp;量:</span>
