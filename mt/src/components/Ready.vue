@@ -15,7 +15,7 @@
         <span>物料类型:</span>
         <span style="color: #5daf34">{{materialType}}</span><br>
 
-        <span>规格型号</span>
+        <span>规格型号:</span>
         <span style="color: #5daf34"></span><br>
 
         <span>单位:</span>
@@ -25,9 +25,9 @@
         <span style="color: #5daf34">{{demand}}</span><br>
 
         <span>库存量:</span>
-        <span style="color: #5daf34">{{inventory}}</span>
+        <span style="color: #5daf34">{{inventory}}</span><br>
 
-        <span>仓库</span>
+        <span>仓库:</span>
         <span style="color: #5daf34">{{warehouseName}}</span><br>
 
         <span>仓库代码:</span>
@@ -41,7 +41,7 @@
         <span style="color: #5daf34">{{pickingUser}}</span><br>
 
         <span>填单时间:</span>
-        <span style="color: #5daf34"></span><br>
+        <span style="color: #5daf34">{{applyDate}}</span><br>
 
         <span>领料部门:</span>
         <span style="color: #5daf34">{{deptName}}</span><br>
@@ -53,10 +53,10 @@
         <span style="color: #5daf34">{{pickingType}}</span><br>
 
         <span>单位主管:</span>
-        <span style="color: #5daf34"></span><br>
+        <span style="color: #5daf34">{{charger}}</span><br>
 
         <span>单位主管审批时间:</span>
-        <span style="color: #5daf34"></span><br>
+        <span style="color: #5daf34">{{auditDate}}</span><br>
 
         <span>实物仓管员:</span>
         <span style="color: #5daf34">{{warehouseWorker}}</span><br><br>
@@ -100,7 +100,7 @@ export default {
       readyResult:'',
       account:'',
       comment:'',
-	   materialCode:'',
+	    materialCode:'',
       materialName:'',
       auditVal:'',
       auditAdavn:'',
@@ -108,8 +108,8 @@ export default {
       unit:'',
       demand:'',
       inventory:'',
-      warehouse:'',
-      warehousecode:'',
+      warehouseName:'',
+      warehouseCode:'',
       pickingUser:'',
       applyDate:'',
       deptName:'',
@@ -117,8 +117,10 @@ export default {
       pickingType:'',
       warehouseWorker:'',
       applyer:'',
-	  time:'',
+	    time:'',
       rowId:this.$route.query.id,
+	    auditDate:'',
+		  charger:'',
       options:[
         {
           value:'备料',
@@ -137,7 +139,24 @@ export default {
 
     },
     submit(){
-
+      this.$ajax.get(this.apiUrl+'/ready/save',{
+        params: {
+          username:this.username,
+          uid:this.uid,
+          rid:this.rowId,
+          status:this.readyResult,
+          comment:this.comment,
+          account:this.account
+        }
+      }).then(res=>{
+        if(res.data=="success"){
+          this.$message({
+            message:'保存成功',
+            type:'success'
+          })
+          this.$router.replace('/readyList')
+        }
+      })
     },
 
     goBack(){
@@ -146,7 +165,7 @@ export default {
   },
 
   created() {
-    this.$ajax.get('http://localhost:8082/ready/edit',{
+    this.$ajax.get(this.apiUrl+'/ready/edit',{
       params: {
         rid:this.rowId
       }
@@ -154,8 +173,6 @@ export default {
       let data=res.data
       console.log(res.data)
 	  console.log('---------------------------------------')
-	  console.log(data.time)
-	  console.log(data.list)
 
       this.materialCode=data.list.materialCode
       this.materialName=data.list.materialName
@@ -163,8 +180,8 @@ export default {
       this.unit=data.list.unit,
       this.demand=data.list.demand,
       this.inventory=data.list.inventory,
-      this.warehouse=data.list.warehouse,
-      this.warehousecode=data.list.warehousecode,
+      this.warehouseName=data.list.warehouse,
+      this.warehouseCode=data.list.warehousecode,
       this.pickingUser=data.list.pickingUser,
       this.applyDate=data.list.applyDate,
       this.deptName=data.list.deptName,
@@ -172,7 +189,10 @@ export default {
       this.pickingType=data.list.pickingType,
       this.warehouseWorker=data.list.warehouseWorkerId.usnm,
       this.applyer=data.list.applyer
-      this.applyDate=data.time
+	  this.charger=data.list.deptHeadsId.usnm
+      this.applyDate=data.time[0]
+	    this.auditDate=data.time[1]
+      console.log(data.time[1]+"..."+data.time[2])
     })
   }
 }

@@ -141,14 +141,24 @@ name: "ReadyList",
     }
   },
   created() {
-    this.$ajax.get('http://localhost:8082/ready/list',{
+    this.$ajax.get(this.apiUrl+'/ready/list',{
       params: {
-        username:'林盛凯',
-        uid:'114200563',
+        username:this.username,
+        uid:this.uid,
       }
     }).then(res=>{
-      console.log(res.data)
-      this.tableData=res.data
+
+	  let data=res.data
+	  console.log(data)
+	  console.log("data.request的值："+data.request)
+	  console.log("data.request[0]的值："+data.request[0])
+
+	  console.log("data.times的值:"+data.times)
+	  console.log("data.times的值:"+data.times[0])
+
+	  this.tableData=data.request
+
+	  this.tableData.applyDate=data.times
     })
   }
 }

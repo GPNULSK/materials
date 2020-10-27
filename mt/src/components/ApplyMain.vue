@@ -179,7 +179,7 @@
             return
             alert('return后面代码')
           }
-          this.$ajax.get('http://localhost:8082/apply/applySave',{
+          this.$ajax.get(this.apiUrl+'/apply/applySave',{
             params: {
               materialCode:this.materialCode,//物料代码
               materialName:this.materialName,//物料名称

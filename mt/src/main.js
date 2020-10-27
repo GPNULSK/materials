@@ -6,11 +6,16 @@ import router from './router'
 
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import global from './components/Global'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+
 Vue.prototype.$ajax = axios
+Vue.prototype.apiUrl=global.apiUrl
+Vue.prototype.username=global.username
+Vue.prototype.uid=global.uid
 
 Vue.config.productionTip = false
 Vue.use(Element)

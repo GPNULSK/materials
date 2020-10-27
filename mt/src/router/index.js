@@ -13,6 +13,10 @@ import readyList from '../components/ReadyList'
 import ready from '../components/Ready'
 import Ready from "../components/Ready";
 
+import sureList from '../components/SureList'
+import sure from '../components/Sure'
+import Sure from "../components/Sure";
+
 Vue.use(Router)
 
 export default new Router({
@@ -37,7 +41,9 @@ export default new Router({
 
     {path: '/audit', component: audit},
     {path: '/readyList',component: readyList},
-    {path: '/ready',component: Ready}
+    {path: '/ready',component: Ready},
+    {path: '/sureList',component: sureList},
+    {path: '/sure',component: Sure}
 
   ]
 })
