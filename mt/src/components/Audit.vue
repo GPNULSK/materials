@@ -75,9 +75,6 @@
         <br><br>
 
 
-      <span>转交仓管员:</span>
-      <el-input :disabled="true" v-model="nextWorker"/>
-
       <el-row type="flex" class="row-bg">
         <el-col :span="9">
           <span>审核结果：</span>

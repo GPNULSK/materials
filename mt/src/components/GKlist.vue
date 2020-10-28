@@ -1,26 +1,26 @@
 <template>
+  <div>
+    <el-container>
+      <el-header>
+        <el-page-header @back="goBack" content="归口会签列表">
+        </el-page-header>
+      </el-header>
+      <el-main>
 
-  <el-container>
-    <el-header><el-page-header @back="goBack" >
-    </el-page-header>
-    </el-header>
-    <el-main>
-      <div>
         <template>
           <el-table
             border
             :data="tableData"
             style="width: 100%">
+            <el-table-column
+              type="selection"
+              width="55">
+            </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button
                   size="mini"
-                  @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                <br><br>
-                <el-button
-                  size="mini"
-                  type="danger"
-                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                  @click="toAudit(scope.$index, scope.row)">审核</el-button>
               </template>
             </el-table-column>
             <el-table-column
@@ -49,7 +49,7 @@
             </el-table-column>
 
             <el-table-column
-              prop="pickingUser"
+              prop="applyer"
               label="申请人">
             </el-table-column>
 
@@ -82,6 +82,12 @@
               label="备料数量">
             </el-table-column>
 
+
+            <el-table-column
+              prop="lyxx"
+              label="物料来源">
+            </el-table-column>
+
             <el-table-column
               prop="status"
               label="签审状态">
@@ -92,66 +98,52 @@
               prop="id"
               label="单号">
             </el-table-column>
-
-
           </el-table>
         </template>
-      </div>
-    </el-main>
-    <el-footer>Footer</el-footer>
-  </el-container>
 
+      </el-main>
+      <el-footer>Footer</el-footer>
+    </el-container>
+  </div>
 </template>
 
 <script>
-  export default {
-  name: "MyApplications",
+export default {
+  name: "GKlist",
   data(){
     return{
-      tableData:[
-
-      ],
+	tableData:[]
     }
   },
-    methods: {
-    //删除申请单，需要参数：用户名，工号，申请单号
-      handleDelete(index,row){
-        this.$ajax.get('http://localhost:8082/applications/applyDelete',{
-          params: {
-            username:'林盛凯',
-            userId:'114200563',
-            applyId:row.id
-          }
-        }).then(res=>{
-          //实现异步删除的效果
-          this.$ajax.get('http://localhost:8082/applications/applyList').then(res=>{
-            console.log(res.data.applyDate)
-            this.tableData=res.data
-          })
 
-          this.$message({
-            message:'删除成功',
-            type:'success'
-          })
-        })
-      },
-      goBack(){
-        this.$router.go(-1);
-      }
-    },
-    created() {
-    //发起请求得到我的申请列表
-      this.$ajax.get('http://localhost:8082/applications/applyList',{
-        params: {
-          uid:this.uid
+  methods: {
+
+    toAudit(index,row){
+      this.$router.push({
+        path:'/gk',
+        query:{
+          id:row.id
         }
-      }).then(res=>{
-			console.log(res.data)
-		    this.tableData=res.data.result
-        this.tableData.applyDate=res.data.time
       })
+    },
+
+    goBack(){
+      this.$router.go(-1)
     }
+  },
+  created() {
+	console.log('create试试')
+    this.$ajax.get(this.apiUrl+'/gk/list',{
+      params: {
+        username:this.username,
+        uid:this.uid
+      }
+    }).then(res=>{
+		console.log(res.data)
+      this.tableData=res.data
+    })
   }
+}
 </script>
 
 <style scoped>

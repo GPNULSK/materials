@@ -6,8 +6,8 @@
         </el-page-header>
       </el-header>
       <el-main>
-        <el-button size="mini" @click="agrees">同意</el-button>
-        <el-button size="mini" @click="diaAgree">驳回</el-button><br><br>
+        <el-button size="mini" @click="agrees">批量备料</el-button>
+      
         <template>
           <el-table
             border
@@ -117,16 +117,103 @@ export default {
 name: "ReadyList",
   data(){
     return{
-      tableData:[],
+      tableData:[
+        
+      ],
+      multipleSelection:[]
     }
   },
   methods:{
+
+    agrees(){
+      let rids='';
+      for(let i=0;i<this.multipleSelection.length;i++){
+        if(i!=this.multipleSelection.length-1){
+          rids=rids+this.multipleSelection[i].id+','
+        }else {
+          rids=rids+this.multipleSelection[i].id
+        }
+
+      }
+      console.log(rids)
+      this.$ajax.get(this.apiUrl+'/ready/agree',{
+        params: {
+		username:this.username,
+		uid:this.uid,
+          rids:rids
+        }
+      }).then(res=>{
+        if(res.data=='success'){
+          this.$message({
+            message:'批量备料成功',
+            type:'success'
+          })
+          //再发一次请求，达到异步效果
+          this.$ajax.get(this.apiUrl+'/ready/list',{
+            params: {
+              username:this.username,
+              uid:this.uid,
+            }
+          }).then(res=>{
+
+            let data=res.data
+
+            this.tableData=data.request
+
+            this.tableData.applyDate=data.times
+          })
+        }else{
+          this.$message({
+            message:'批量备料失败。请重试',
+            type:'error'
+          })
+        }
+      })
+    },
+    diaAgree(){
+      let rids='';
+      for(let i=0;i<this.multipleSelection.length;i++){
+        if(i!=this.multipleSelection.length-1){
+          rids=rids+this.multipleSelection[i].id+','
+        }else {
+          rids=rids+this.multipleSelection[i].id
+        }
+      }
+      this.$ajax.get(this.apiUrl+'/ready/disAgree',{
+        params: {
+          rids:rids
+        }
+      }).then(res=>{
+        if(res.data=='success'){
+          this.$message({
+            message:'批量驳回成功',
+            type:'success'
+          })
+          //再发一次请求，达到异步效果
+          this.$ajax.get(this.apiUrl+'/ready/list',{
+            params: {
+              username:this.username,
+              uid:this.uid,
+            }
+          }).then(res=>{
+
+            let data=res.data
+            this.tableData=data.request
+            this.tableData.applyDate=data.times
+          })
+        }else{
+          this.$message({
+            message:'批量驳回保存失败，请重试',
+            type:'error'
+          })
+        }
+      })
+    },
     goBack(){
       this.$router.go(-1);
     },
     handleSelectionChange(val) {
       this.multipleSelection = val;
-      alert(this.multipleSelection)
     },
     toAudit(index,row){
       this.$router.push({
@@ -147,17 +234,8 @@ name: "ReadyList",
         uid:this.uid,
       }
     }).then(res=>{
-
 	  let data=res.data
-	  console.log(data)
-	  console.log("data.request的值："+data.request)
-	  console.log("data.request[0]的值："+data.request[0])
-
-	  console.log("data.times的值:"+data.times)
-	  console.log("data.times的值:"+data.times[0])
-
 	  this.tableData=data.request
-
 	  this.tableData.applyDate=data.times
     })
   }

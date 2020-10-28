@@ -44,6 +44,9 @@
         <el-input :required="true" v-model="account"  style="width: 200px" size="mini" placeholder="请输入需求量"></el-input>
         <br><br>
 
+          <span>归口部门:</span>
+          <el-input v-on:click.native="GK" v-model="gkWorkerName" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+          <br><br>
 
 <!--          领料方式-->
         <template>
@@ -72,19 +75,7 @@
           </template>
         <br><br>
 
-        <!--          原因代码-->
-        <template>
-          <span>原因代码:</span>
-          <el-select size="mini" v-model="reasonCode" placeholder="请选择">
-            <el-option
-              v-for="item in reasonCodeForm"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </template>
-          <br><br>
+
 
 <!--          用途-->
          <span>用途：</span>
@@ -134,6 +125,7 @@
             warehouseWorker:'',
             source:'',
             storeAccount:'',
+            gkWorkerName:'',
 
             getMaterialMethod:[
               {
@@ -260,9 +252,12 @@
           this.storeSomeDate()
           this.$router.go(-1)
         },
+        GK(){
+          this.$router.push('/getGk')
+        },
         clearSession(){
           sessionStorage.clear();
-          local.read();
+          local.reload();
         },
 
 
@@ -282,6 +277,7 @@
           this.isUrgent=sessionStorage.getItem("isUrgent")
           this.getMaterialMethodVal=sessionStorage.getItem("getMaterialMethod")
 		      this.storeAccount=sessionStorage.getItem("inventory")
+          this.gkWorkerName=sessionStorage.getItem('gkWorker')
           console.log(sessionStorage.getItem("materialCode"))
         }
       }

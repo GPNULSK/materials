@@ -138,23 +138,83 @@ export default {
     },
 
     agrees(){
+      let rids='';
+      for(let i=0;i<this.multipleSelection.length;i++){
+        if(i!=this.multipleSelection.length-1){
+          rids=rids+this.multipleSelection[i].id+','
+        }else {
+          rids=rids+this.multipleSelection[i].id
+        }
+      }
       this.$ajax.get('http://localhost:8082/applications/plAudit',{
         params: {
-          username:'',
-          uid:'',
-          rids:this.multipleSelection,
-          status:"0"
+          username:this.username,
+          uid:this.uid,
+          rids:rids,
+          status:'0'
+        }
+      }).then(res=>{
+        if(res.data=='success'){
+          this.$message({
+            message:'批量同意保存成功',
+            type:'success'
+          })
+          //达到异步同意的效果
+          this.$ajax.get('http://localhost:8082/applications/auditList',{
+            params: {
+              username:this.username,
+              uid:this.uid
+            }
+          }).then(res=>{
+            console.log(res.data)
+            this.tableData=res.data
+          })
+        }else{
+          this.$message({
+            message:'批量同意保存失败,请稍后再试',
+            type:'error'
+          })
         }
       })
     },
 
     diaAgree(){
+      let rids='';
+      for(let i=0;i<this.multipleSelection.length;i++){
+        if(i!=this.multipleSelection.length-1){
+          rids=rids+this.multipleSelection[i].id+','
+        }else {
+          rids=rids+this.multipleSelection[i].id
+        }
+      }
       this.$ajax.get('http://localhost:8082/applications/plAudit',{
         params: {
-          username:'',
-          uid:'',
-          rids:this.multipleSelection,
-          status:"1"
+          username:this.username,
+          uid:this.uid,
+          rids:rids,
+          status:'1'
+        }
+      }).then(res=>{
+        if(res.data=='success'){
+          this.$message({
+            message:'批量驳回保存成功',
+            type:'success'
+          })
+          //达到异步同意的效果
+          this.$ajax.get('http://localhost:8082/applications/auditList',{
+            params: {
+              username:this.username,
+              uid:this.uid
+            }
+          }).then(res=>{
+            console.log(res.data)
+            this.tableData=res.data
+          })
+        }else{
+          this.$message({
+            message:'批量驳回保存失败,请稍后再试',
+            type:'error'
+          })
         }
       })
     },
@@ -167,8 +227,8 @@ export default {
   created() {
     this.$ajax.get('http://localhost:8082/applications/auditList',{
       params: {
-        username:'林盛凯',
-        uid:'114200563'
+        username:this.username,
+        uid:this.uid
       }
     }).then(res=>{
       console.log(res.data)

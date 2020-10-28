@@ -6,7 +6,9 @@
       </el-page-header>
     </el-header>
     <el-main>
-
+      <el-button type="success" @click="plSure('agree')">批量通过</el-button>
+      <el-button type="error" @click="plSure('rejectToWarehouse')">批量驳回到仓管员</el-button>
+      <el-button type="danger" @click="plSure('rejectToApply')">批量驳回</el-button>
       <template>
         <el-table
           border
@@ -117,9 +119,89 @@ name: "SureList",
     return{
       tableData:[],
       rowId:'',
+      multipleSelection:[],
     }
   },
   methods: {
+
+    plSure(flag){
+      let rids='';
+      for(let i=0;i<this.multipleSelection.length;i++){
+        if(i!=this.multipleSelection.length-1){
+          rids=rids+this.multipleSelection[i].id+','
+        }else {
+          rids=rids+this.multipleSelection[i].id
+        }
+      }
+      console.log(rids)
+      this.$ajax.get(this.apiUrl+'/sure/plSure',{
+        params: {
+          username:this.username,
+          uid:this.uid,
+          rids:rids,
+          status:flag
+        }
+      }).then(res=>{
+        if(res.data=='success'){
+          if(flag=='agree'){
+            this.$message({
+              message:'批量同意保存成功',
+              type:'success'
+            })
+          }
+
+          if(flag=='rejectToWarehouse'){
+            this.$message({
+              message:'批量驳回到仓管员成功',
+              type:'success'
+            })
+          }
+
+          if(flag=='rejectToApply'){
+            this.$message({
+              message:'批量驳回成功，订单已取消',
+              type:'success'
+            })
+          }
+
+          //重新加载数据，达到异步效果
+          this.$ajax.get(this.apiUrl+'/sure/list',{
+            params: {
+              username:this.username,
+              uid:this.uid
+            }
+          }).then(res=>{
+            this.tableData=res.data
+          })
+        }else{
+          if(flag=='agree'){
+            if(flag=='agree'){
+              this.$message({
+                message:'批量通过失败，请稍后再试',
+                type:'error'
+              })
+            }
+
+            if(flag=='rejectToWarehouse'){
+              this.$message({
+                message:'批量驳回到仓管员失败，请稍后再试',
+                type:'error'
+              })
+            }
+
+            if(flag=='rejectToApply'){
+              this.$message({
+                message:'批量驳回失败，请稍后再试',
+                type:'error'
+              })
+            }
+          }
+        }
+      })
+    },
+
+
+
 
     toAudit(index,row){
       this.rowId=row.id
@@ -131,8 +213,8 @@ name: "SureList",
       })
     },
 
-    handleSelectionChange(){
-
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
     },
 
     goBack(){
