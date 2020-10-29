@@ -102,7 +102,14 @@
         </template>
 
       </el-main>
-      <el-footer>Footer</el-footer>
+      <el-footer>
+        <el-pagination
+          background
+          @current-change="currentPage"
+          layout="prev, pager, next"
+          :total=totalRecord>
+        </el-pagination>
+      </el-footer>
     </el-container>
   </div>
 </template>
@@ -112,11 +119,32 @@ export default {
   name: "GKlist",
   data(){
     return{
-	tableData:[]
+	    tableData:[],
+      totalRecord:0,
     }
   },
 
   methods: {
+
+    //分页
+    currentPage(val){
+      this.$ajax.get(this.apiUrl+'/gk/list',{
+        params: {
+          username:this.username,
+          uid:this.uid,
+          curPage:val
+        }
+      }).then(res=>{
+        console.log(res.data)
+        let data=res.data;
+        this.tableData=data.result
+        this.totalRecord=data.page[0]
+        for(let i=0;i<this.tableData.length;i++){
+          this.tableData[i].applyDate=data.time[i]
+        }
+      })
+
+    },
 
     toAudit(index,row){
       this.$router.push({
@@ -132,20 +160,27 @@ export default {
     }
   },
   created() {
-	console.log('create试试')
+
     this.$ajax.get(this.apiUrl+'/gk/list',{
       params: {
         username:this.username,
-        uid:this.uid
+        uid:this.uid,
+		curPage:1
       }
     }).then(res=>{
 		console.log(res.data)
-      this.tableData=res.data
+      let data=res.data;
+      this.tableData=data.result
+      this.totalRecord=data.page[0]
+      for(let i=0;i<this.tableData.length;i++){
+        this.tableData[i].applyDate=data.time[i]
+      }
     })
   }
 }
 </script>
 
 <style scoped>
-
+dl{clear:left; padding-left: 20px}
+dt,dd{float:left;}
 </style>

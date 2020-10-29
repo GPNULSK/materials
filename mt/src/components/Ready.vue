@@ -6,60 +6,79 @@
         </el-page-header>
       </el-header>
       <el-main>
-        <span>物料代码：</span>
-        <span style="color: #5daf34">{{materialCode}}</span><br>
 
-        <span>物料名称：</span>
-        <span style="color: #5daf34">{{materialName}}</span><br>
+        <div>
 
-        <span>物料类型:</span>
-        <span style="color: #5daf34">{{materialType}}</span><br>
+          <dl>
+            <dt>物料代码：</dt><dd style="color: #5daf34;">{{materialCode}}</dd>
+          </dl>
+          <dl>
+            <dt>物料名称：</dt><dd style="color: #5daf34;">{{materialName}}</dd>
+          </dl>
+          <dl>
+            <dt>物料类型：</dt><dd style="color: #5daf34;">{{materialType}}</dd>
+          </dl>
+          <dl>
+            <dt>单位：</dt><dd style="color: #5daf34;">{{unit}}</dd>
+          </dl>
+          <dl>
+            <dt>需求量：</dt><dd style="color: #5daf34;">{{demand}}</dd>
+          </dl>
+          <dl>
+            <dt>库存量：</dt><dd style="color: #5daf34;">{{inventory}}</dd>
+          </dl>
+          <dl>
+            <dt>仓库：</dt><dd style="color: #5daf34;">{{warehouseName}}</dd>
+          </dl>
 
-        <span>规格型号:</span>
-        <span style="color: #5daf34"></span><br>
+          <dl>
+            <dt>仓库代码：</dt><dd style="color: #5daf34;">{{warehouseCode}}</dd>
+          </dl>
 
-        <span>单位:</span>
-        <span style="color: #5daf34">{{unit}}</span><br>
+          <dl>
+            <dt>申请人：</dt><dd style="color: #5daf34;">{{applyer}}</dd>
+          </dl>
 
-        <span>需求量</span>
-        <span style="color: #5daf34">{{demand}}</span><br>
+          <dl>
+            <dt>领料人：</dt><dd style="color: #5daf34;">{{pickingUser}}</dd>
+          </dl>
+          <dl>
 
-        <span>库存量:</span>
-        <span style="color: #5daf34">{{inventory}}</span><br>
+            <dl>
+              <dt>填单时间：</dt><dd style="color: #5daf34;">{{applyDate}}</dd>
+            </dl>
 
-        <span>仓库:</span>
-        <span style="color: #5daf34">{{warehouseName}}</span><br>
+            <dl>
+              <dt>领料部门：</dt><dd style="color: #5daf34;">{{deptName}}</dd>
+            </dl>
+            <dl>
+              <dt>紧急情况：</dt><dd style="color: #5daf34;">{{urgent}}</dd>
+            </dl>
 
-        <span>仓库代码:</span>
-        <span style="color: #5daf34">{{warehouseCode}}</span><br>
+            <dl>
+              <dt>领料方式：</dt><dd style="color: #5daf34;">{{pickingType}}</dd>
+            </dl>
 
+            <dl>
+              <dt>用途：</dt><dd style="color: #5daf34;">{{usage}}</dd>
+            </dl>
 
-        <span>申请人:</span>
-        <span style="color: #5daf34">{{applyer}}</span><br>
+            <dl>
+              <dt>单位主管：</dt><dd style="color: #5daf34;">{{charger}}</dd>
+            </dl>
 
-        <span>领料人</span>
-        <span style="color: #5daf34">{{pickingUser}}</span><br>
+            <dl>
+              <dt>单位主管审批时间：</dt><dd style="color: #5daf34;">{{ auditDate }}</dd>
+            </dl>
 
-        <span>填单时间:</span>
-        <span style="color: #5daf34">{{applyDate}}</span><br>
+            <dl>
+              <dt>实物仓管员：</dt><dd style="color: #5daf34;">{{warehouseWorker}}</dd>
+            </dl>
 
-        <span>领料部门:</span>
-        <span style="color: #5daf34">{{deptName}}</span><br>
-
-        <span>紧急情况:</span>
-        <span style="color: #5daf34">{{urgent}}</span><br>
-
-        <span>领料方式:</span>
-        <span style="color: #5daf34">{{pickingType}}</span><br>
-
-        <span>单位主管:</span>
-        <span style="color: #5daf34">{{charger}}</span><br>
-
-        <span>单位主管审批时间:</span>
-        <span style="color: #5daf34">{{auditDate}}</span><br>
-
-        <span>实物仓管员:</span>
-        <span style="color: #5daf34">{{warehouseWorker}}</span><br><br>
+            <dl>
+              <dt>归口会签时间：</dt><dd style="color: #5daf34;">{{ readyDate }}</dd>
+            </dl>
+          </dl>
 
         <span>转交仓管员:</span>
         <el-input v-on:click.native="nextWorker" v-model="neWorker" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
@@ -81,7 +100,7 @@
 
         <span>审批意见：</span>
         <el-input size="mini" type="textarea" v-model="comment" style="width: 200px"></el-input>
-
+        </div>
       </el-main>
       <el-footer>
         <el-button type="primary" size="mini" @click="submit">提交</el-button>
@@ -136,7 +155,7 @@ export default {
   methods: {
 
     nextWorker(){
-
+      this.$router.push('/nextWorker')
     },
     submit(){
       this.$ajax.get(this.apiUrl+'/ready/save',{
@@ -165,6 +184,8 @@ export default {
   },
 
   created() {
+
+    this.neWorker=sessionStorage.getItem('nextWorker')
     this.$ajax.get(this.apiUrl+'/ready/edit',{
       params: {
         rid:this.rowId

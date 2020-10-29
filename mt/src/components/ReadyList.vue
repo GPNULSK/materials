@@ -7,7 +7,7 @@
       </el-header>
       <el-main>
         <el-button size="mini" @click="agrees">批量备料</el-button>
-      
+
         <template>
           <el-table
             border
@@ -62,7 +62,7 @@
             </el-table-column>
 
             <el-table-column
-              prop="applyDate.time"
+              prop="applyDate"
               label="填单时间">
             </el-table-column>
 
@@ -105,7 +105,12 @@
         </template>
       </el-main>
       <el-footer>
-        <el-button @click="t1">条状</el-button>
+        <el-pagination
+          background
+          @current-change="currentPage"
+          layout="prev, pager, next"
+          :total=totalRecord>
+        </el-pagination>
       </el-footer>
     </el-container>
   </div>
@@ -117,13 +122,30 @@ export default {
 name: "ReadyList",
   data(){
     return{
-      tableData:[
-        
-      ],
-      multipleSelection:[]
+      tableData:[],
+      multipleSelection:[],
+      totalRecord:0,
     }
   },
   methods:{
+
+    currentPage(val){
+      this.$ajax.get(this.apiUrl+'/ready/list',{
+        params: {
+          username:this.username,
+          uid:this.uid,
+          curPage:val
+        }
+      }).then(res=>{
+        let data=res.data
+        console.log(data)
+        this.tableData=data.request
+        this.totalRecord=data.page[0]
+        for(let i=0;i<this.tableData.length;i++){
+          this.tableData[i].applyDate=data.times[i]
+        }
+      })
+    },
 
     agrees(){
       let rids='';
@@ -232,11 +254,16 @@ name: "ReadyList",
       params: {
         username:this.username,
         uid:this.uid,
+        curPage:1
       }
     }).then(res=>{
 	  let data=res.data
+	  console.log(data)
 	  this.tableData=data.request
-	  this.tableData.applyDate=data.times
+      this.totalRecord=data.page[0]
+	  for(let i=0;i<this.tableData.length;i++){
+	    this.tableData[i].applyDate=data.times[i]
+    }
     })
   }
 }

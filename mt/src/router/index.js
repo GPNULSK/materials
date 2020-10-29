@@ -19,6 +19,7 @@ import Sure from "../components/Sure";
 import gklist from '../components/GKlist'
 import getGk from '../components/GetGK'
 import gk from '../components/GK'
+import nextWorker from '../components/NextWorker'
 
 Vue.use(Router)
 
@@ -49,7 +50,8 @@ export default new Router({
     {path: '/sure',component: Sure},
     {path: '/GkList',component: gklist},
     {path: '/gk',component: gk},
-    {path: '/getGk',component: getGk}
+    {path: '/getGk',component: getGk},
+    {path: '/nextWorker',component: nextWorker}
 
   ]
 })

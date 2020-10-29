@@ -6,9 +6,9 @@
       </el-page-header>
     </el-header>
     <el-main>
-      <el-button type="success" @click="plSure('agree')">批量通过</el-button>
-      <el-button type="error" @click="plSure('rejectToWarehouse')">批量驳回到仓管员</el-button>
-      <el-button type="danger" @click="plSure('rejectToApply')">批量驳回</el-button>
+      <el-button size='mini' type="success" @click="plSure('agree')">批量通过</el-button>
+      <el-button size='mini' type="error" @click="plSure('rejectToWarehouse')">批量驳回到仓管员</el-button>
+      <el-button size='mini' type="danger" @click="plSure('rejectToApply')">批量驳回</el-button><br><br>
       <template>
         <el-table
           border
@@ -106,7 +106,14 @@
       </template>
 
     </el-main>
-    <el-footer>Footer</el-footer>
+    <el-footer>
+      <el-pagination
+        background
+        @current-change="currentPage"
+        layout="prev, pager, next"
+        :total=totalRecord>
+      </el-pagination>
+    </el-footer>
   </el-container>
 </div>
 </template>
@@ -120,9 +127,27 @@ name: "SureList",
       tableData:[],
       rowId:'',
       multipleSelection:[],
+      totalRecord:0,
     }
   },
   methods: {
+
+    currentPage(val){
+      this.$ajax.get(this.apiUrl+'/sure/list',{
+        params: {
+          username:this.username,
+          uid:this.uid,
+          curPage:val
+        }
+      }).then(res=>{
+        let data=res.data;
+        this.tableData=data.result;
+        for(let i=0;i<this.tableData.length;i++){
+          this.tableData[i].applyDate=data.applyTime[i];
+          this.tableData[i].readyDate=data.readyTime[i]
+        }
+      })
+    },
 
     plSure(flag){
       let rids='';
@@ -201,8 +226,6 @@ name: "SureList",
     },
 
 
-
-
     toAudit(index,row){
       this.rowId=row.id
       this.$router.push({
@@ -225,10 +248,16 @@ name: "SureList",
     this.$ajax.get(this.apiUrl+'/sure/list',{
       params: {
         username:this.username,
-        uid:this.uid
+        uid:this.uid,
+        curPage:1
       }
     }).then(res=>{
-      this.tableData=res.data
+      let data=res.data;
+      this.tableData=data.result;
+      for(let i=0;i<this.tableData.length;i++){
+        this.tableData[i].applyDate=data.applyTime[i];
+        this.tableData[i].readyDate=data.readyTime[i]
+      }
     })
   }
 }

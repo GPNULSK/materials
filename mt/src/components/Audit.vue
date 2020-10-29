@@ -64,10 +64,7 @@
           <dt>单位主管：</dt><dd style="color: #5daf34;">{{materialType}}</dd>
         </dl>
 
-        <dl>
-          <dt>单位主管审批时间：</dt><dd style="color: #5daf34;"></dd>
-        </dl>
-
+       
         <dl>
           <dt>实物仓管员：</dt><dd style="color: #5daf34;">{{warehouseWorker}}</dd>
         </dl>

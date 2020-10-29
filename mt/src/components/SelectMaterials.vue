@@ -150,7 +150,6 @@
             console.log(res.data)
             let data=res.data;
             this.tableData=data.materials
-
           })
         },
 

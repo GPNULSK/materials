@@ -98,7 +98,14 @@
         </template>
       </div>
     </el-main>
-    <el-footer>Footer</el-footer>
+    <el-footer>
+      <el-pagination
+        background
+        @current-change="currentPage"
+        layout="prev, pager, next"
+        :total=totalRecord>
+      </el-pagination>
+    </el-footer>
   </el-container>
 
 </template>
@@ -108,9 +115,8 @@
   name: "MyApplications",
   data(){
     return{
-      tableData:[
-
-      ],
+      tableData:[],
+      totalRecord:0
     }
   },
     methods: {
@@ -135,6 +141,25 @@
           })
         })
       },
+	  
+	  currentPage(val){
+		//发起请求得到我的申请列表
+      this.$ajax.get('http://localhost:8082/applications/applyList',{
+        params: {
+          uid:this.uid,
+		  curPage:val
+        }
+      }).then(res=>{
+			console.log(res.data)
+        let data=res.data
+		    this.tableData=res.data.result
+        this.totalRecord=data.page[0]
+        for(let i=0;i<this.tableData.length;i++){
+          this.tableData[i].applyDate=res.data.time[i]
+		      this.tableData[i].readyDate=res.data.bl[i]
+        }
+      })
+	  },
       goBack(){
         this.$router.go(-1);
       }
@@ -143,12 +168,18 @@
     //发起请求得到我的申请列表
       this.$ajax.get('http://localhost:8082/applications/applyList',{
         params: {
-          uid:this.uid
+          uid:this.uid,
+		  curPage:1
         }
       }).then(res=>{
 			console.log(res.data)
+        let data=res.data
 		    this.tableData=res.data.result
-        this.tableData.applyDate=res.data.time
+        this.totalRecord=data.page[0]
+        for(let i=0;i<this.tableData.length;i++){
+          this.tableData[i].applyDate=res.data.time[i]
+		      this.tableData[i].readyDate=res.data.bl[i]
+        }
       })
     }
   }

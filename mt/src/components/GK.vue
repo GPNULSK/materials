@@ -68,13 +68,7 @@
             <dt>实物仓管员：</dt><dd style="color: #5daf34;">{{warehouseWorker}}</dd>
           </dl>
 
-          <dl>
-            <dt>备料时间：</dt><dd style="color: #5daf34;">{{ readyDate }}</dd>
-          </dl>
 
-          <dl>
-            <dt>发料时间：</dt><dd style="color: #5daf34;">{{ sendDate }}</dd>
-          </dl>
 
           <br><br>
 
@@ -149,6 +143,7 @@ export default {
       sendDate:'',
       auditVal:'',
       auditAdavn:'',
+	  deptName:'',
 
       options:[
         {
@@ -192,6 +187,10 @@ export default {
         }
       })
     },
+
+	shutDown(){
+		this.$router.replace('/GkList')
+	},
     goBack(){
       this.$router.go(-1)
     }
@@ -204,31 +203,34 @@ export default {
       }
     }).then(res=>{
 		let data=res.data;
-		this.materialCode=data.materialCode,
-        this.materialName=data.materialName,
-        this.materialType='',
-        this.unit=data.unit,
-        this.demand=data.demand,
-        this.inventory=data.inventory,
-        this.warehouseName=data.warehouse,
-        this.warehouseCode=data.warehousecode,
-        this.applyer=data.applyer,
-        this.pickingUser=data.pickingUser,
-        this.applyDate=data.applyDate,
-        this.deptName=data.deptName,
-        this.urgent=data.urgent,
-        this.pickingType=data.pickingType,
-        this.usage=data.use,
-        this.charger=data.deptHeadsId.usnm,
-        this.auditDate=data.auditDate,
-        this.warehouseWorker=data.warehouseWorkerId.usnm,
-        this.readyDate=data.readyDate,
-        this.sendDate=data.sendDate
+		console.log(data)
+		this.materialCode=data.result.materialCode,
+        this.materialName=data.result.materialName,
+        this.materialType=data.result.materialType,
+        this.unit=data.result.unit,
+        this.demand=data.result.demand,
+        this.inventory=data.result.inventory,
+        this.warehouseName=data.result.warehouse,
+        this.warehouseCode=data.result.warehousecode,
+        this.applyer=data.result.applyer,
+        this.pickingUser=data.result.pickingUser,
+        this.applyDate=data.time[0],
+        this.deptName=data.result.deptName,
+        this.urgent=data.result.urgent,
+        this.pickingType=data.result.pickingType,
+        this.usage=data.result.use,
+        this.charger=data.result.deptHeadsId.usnm,
+        this.auditDate=data.time[1],
+        this.warehouseWorker=data.result.warehouseWorkerId.usnm,
+        this.readyDate=data.result.readyDate,
+        this.sendDate=data.result.sendDate
     })
   }
 }
 </script>
 
 <style scoped>
-
+dl{clear:left; padding-left: 20px}
+dt,dd{float:left;}
+dd{margin: 0}
 </style>

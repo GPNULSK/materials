@@ -63,7 +63,7 @@
             </el-table-column>
 
             <el-table-column
-              prop="applyDate.time"
+              prop="applyDate"
               label="填单时间">
             </el-table-column>
 
@@ -76,15 +76,7 @@
               label="实物仓管员">
             </el-table-column>
 
-            <el-table-column
-              prop="readyDate"
-              label="备料时间">
-            </el-table-column>
-
-            <el-table-column
-              prop="readyNumber"
-              label="备料数量">
-            </el-table-column>
+    
 
             <el-table-column
               prop="status"
@@ -100,7 +92,12 @@
         </template>
       </el-main>
       <el-footer>
-        <el-button @click="t1">条状</el-button>
+        <el-pagination
+          background
+          @current-change="currentPage"
+          layout="prev, pager, next"
+          :total=totalRecord>
+        </el-pagination>
       </el-footer>
     </el-container>
 
@@ -118,9 +115,27 @@ export default {
     return{
       tableData:[],
       multipleSelection: [],
+	  totalRecord:0
     }
   },
   methods:{
+  
+	currentPage(val){
+		this.$ajax.get('http://localhost:8082/applications/auditList',{
+      params: {
+        username:this.username,
+        uid:this.uid,
+		curPage:val
+      }
+    }).then(res=>{
+      console.log(res.data)
+      let data=res.data;
+      this.tableData=data.result
+      for(let i=0;i<this.tableData.length;i++){
+        this.tableData[i].applyDate=data.time[i]
+      }
+    })
+	},	
     toAudit(index,row){
       this.$router.push({
         path:'/audit',
@@ -228,11 +243,16 @@ export default {
     this.$ajax.get('http://localhost:8082/applications/auditList',{
       params: {
         username:this.username,
-        uid:this.uid
+        uid:this.uid,
+		curPage:1
       }
     }).then(res=>{
       console.log(res.data)
-      this.tableData=res.data
+      let data=res.data;
+      this.tableData=data.result
+      for(let i=0;i<this.tableData.length;i++){
+        this.tableData[i].applyDate=data.time[i]
+      }
     })
   }
 }
