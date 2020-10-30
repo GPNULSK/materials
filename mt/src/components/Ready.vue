@@ -8,7 +8,7 @@
       <el-main>
 
         <div>
-
+        <dl>
           <dl>
             <dt>物料代码：</dt><dd style="color: #5daf34;">{{materialCode}}</dd>
           </dl>
@@ -42,7 +42,6 @@
           <dl>
             <dt>领料人：</dt><dd style="color: #5daf34;">{{pickingUser}}</dd>
           </dl>
-          <dl>
 
             <dl>
               <dt>填单时间：</dt><dd style="color: #5daf34;">{{applyDate}}</dd>
@@ -79,13 +78,14 @@
               <dt>归口会签时间：</dt><dd style="color: #5daf34;">{{ readyDate }}</dd>
             </dl>
           </dl>
+		  <br><br>
 
         <span>转交仓管员:</span>
-        <el-input v-on:click.native="nextWorker" v-model="neWorker" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+        <el-input v-on:click.native="nextWorker" v-model="neWorker" style="width: 150px" size="mini" placeholder="请输入内容"></el-input>
         <br><br>
         <span>审批结果：</span>
         <template>
-          <el-select v-model="readyResult" placeholder="请选择">
+          <el-select size='mini' v-model="readyResult" placeholder="请选择">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -96,7 +96,7 @@
         </template><br><br>
 
         <span>备料数量：</span>
-        <el-input v-model="account" size="mini" style="width: 150px"></el-input><br><br>
+        <el-input v-model="account"  size="mini" style="width: 150px"></el-input><br><br>
 
         <span>审批意见：</span>
         <el-input size="mini" type="textarea" v-model="comment" style="width: 200px"></el-input>
@@ -137,9 +137,11 @@ export default {
       warehouseWorker:'',
       applyer:'',
 	    time:'',
-      rowId:this.$route.query.id,
+      rowId:'',
 	    auditDate:'',
 		  charger:'',
+		  usage:'',
+		  readyDate:'',
       options:[
         {
           value:'备料',
@@ -158,6 +160,25 @@ export default {
       this.$router.push('/nextWorker')
     },
     submit(){
+		console.log(this.neWorker)
+      if(this.neWorker==''){
+        if(this.readyResult==''){
+          this.$message({
+            message:'请选择审核结果',
+            type:'error'
+          })
+          return
+        }
+
+        if(this.account==''){
+          this.$message({
+            message:'请输入备料数量',
+            type:'error'
+          })
+          return
+        }
+      }
+
       this.$ajax.get(this.apiUrl+'/ready/save',{
         params: {
           username:this.username,
@@ -184,6 +205,8 @@ export default {
   },
 
   created() {
+
+    this.rowId=sessionStorage.getItem('readyRoeId')
 
     this.neWorker=sessionStorage.getItem('nextWorker')
     this.$ajax.get(this.apiUrl+'/ready/edit',{
@@ -213,6 +236,7 @@ export default {
 	  this.charger=data.list.deptHeadsId.usnm
       this.applyDate=data.time[0]
 	    this.auditDate=data.time[1]
+		this.usage=data.list.use
       console.log(data.time[1]+"..."+data.time[2])
     })
   }
@@ -220,7 +244,9 @@ export default {
 </script>
 
 <style scoped>
-  p {
-    color: #5daf34;
-  }
+
+
+dl{clear:left; padding-left: 20px}
+dt,dd{float:left;}
+dd{margin: 0}
 </style>

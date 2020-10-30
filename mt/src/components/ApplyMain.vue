@@ -171,6 +171,13 @@
             return
             alert('return后面代码')
           }
+          if(this.account>this.storeAccount){
+            this.$message({
+              message:'需求量不能大于库存量',
+              type:'error'
+            })
+            return
+          }
           this.$ajax.get(this.apiUrl+'/apply/applySave',{
             params: {
               materialCode:this.materialCode,//物料代码
@@ -184,9 +191,9 @@
               getMaterialMethod:this.getMaterialMethodVal, //领料方式
               isUrgent:this.isUrgent, //是否紧急
               usage:this.usage, //用途
-              userId:'114200563',
+              userId:this.uid,
               userDept:'信息化推进办公室',
-              username:'林盛凯',
+              username:this.username,
             }
           }).then(res=>{
             if (res.data=='success'){
@@ -214,10 +221,10 @@
 
         toSelectId(){
 
-          console.log(this.account)
           sessionStorage.setItem("account",this.account)
           sessionStorage.setItem("isUrgent",this.isUrgent)
           sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
+          sessionStorage.setItem('usage',this.usage)
           if(sessionStorage.getItem("account")==null){
 
           }
@@ -235,6 +242,7 @@
           sessionStorage.setItem("account",this.account)
           sessionStorage.setItem("isUrgent",this.isUrgent)
           sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
+          sessionStorage.setItem('usage',this.usage)
           this.$router.push("/getDcharger")
         },
 
@@ -242,6 +250,7 @@
           sessionStorage.setItem("account",this.account)
           sessionStorage.setItem("isUrgent",this.isUrgent)
           sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
+          sessionStorage.setItem('usage',this.usage)
           this.$router.push('/selectByWarehouse')
         },
         toGetWarehouseWorker(){
@@ -257,13 +266,14 @@
         },
         clearSession(){
           sessionStorage.clear();
-          local.reload();
+          location.reload();
         },
 
 
       },
       mounted() {
         if(sessionStorage.length>0){
+          this.usage=sessionStorage.getItem('usage')
           this.materialCode=sessionStorage.getItem("materialCode");
           this.materialName=sessionStorage.getItem("wlname");
           this.materialType=sessionStorage.getItem("wltype");

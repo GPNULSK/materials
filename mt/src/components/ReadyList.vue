@@ -238,12 +238,8 @@ name: "ReadyList",
       this.multipleSelection = val;
     },
     toAudit(index,row){
-      this.$router.push({
-        path:'/ready',
-        query:{
-          id:row.id
-        }
-      })
+      sessionStorage.setItem("readyRoeId",row.id);
+      this.$router.push('/ready')
     },
     t1(){
       this.$router.push('/ready')

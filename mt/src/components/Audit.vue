@@ -39,7 +39,7 @@
           <dt>仓库代码：</dt><dd style="color: #5daf34;">{{warehouseCode}}</dd>
         </dl>
         <dl>
-          <dt>物料属性：</dt><dd style="color: #5daf34;"></dd>
+          <dt>物料属性：</dt><dd style="color: #5daf34;">{{materialType}}</dd>
         </dl>
         <dl>
           <dt>申请人：</dt><dd style="color: #5daf34;">{{applyer}}</dd>
@@ -64,7 +64,7 @@
           <dt>单位主管：</dt><dd style="color: #5daf34;">{{materialType}}</dd>
         </dl>
 
-       
+
         <dl>
           <dt>实物仓管员：</dt><dd style="color: #5daf34;">{{warehouseWorker}}</dd>
         </dl>
@@ -156,10 +156,18 @@ export default {
   },
   methods:{
     save(){
+
+      if(this.auditVal==''){
+        this.$message({
+          message:'请选择审核结果',
+          type:'error'
+        })
+        return
+      }
       this.$ajax.get('http://localhost:8082/applications/auditSave',{
         params:{
-          username:'',
-          id:'',
+          username:this.$root.username,
+          id:this.$root.uid,
           rid:this.id,
           status:this.auditVal,
           comment:this.auditAdavn
@@ -182,20 +190,22 @@ export default {
     }).then(res=>{
       console.log(res.data)
 	  let data=res.data
-	  this.materialName=data.materialName,
-	  this.materialCode=data.materialCode,
-	  this.materialType=data.materialType,
-	  this.unit=data.unit,
-	  this.demand=data.demand,
-	  this.inventory=data.inventory,
-	  this.warehouse=data.warehouse,
-	  this.warehouseCode=data.warehousecode,
-	  this.pickingUser=data.pickingUser,
-	  this.deptName=data.deptName,
-	  this.urgent=data.urgent,
-	  this.pickingType=data.pickingType,
-	  this.warehouseWorker=data.warehouseWorkerId.usnm,
-	  this.applyer=data.applyer
+	  this.materialName=data.result.materialName,
+	  this.materialCode=data.result.materialCode,
+	  this.materialType=data.result.materialType,
+	  this.unit=data.result.unit,
+	  this.demand=data.result.demand,
+	  this.inventory=data.result.inventory,
+	  this.warehouse=data.result.warehouse,
+	  this.warehouseCode=data.result.warehousecode,
+	  this.pickingUser=data.result.pickingUser,
+	  this.deptName=data.result.deptName,
+	  this.urgent=data.result.urgent,
+	  this.pickingType=data.result.pickingType,
+	  this.warehouseWorker=data.result.warehouseWorkerId.usnm,
+	  this.applyer=data.result.applyer,
+	  this.applyDate=data.time[0],
+	  this.materialType=data.result.materialType
     })
   }
 }
@@ -205,5 +215,5 @@ export default {
 
 dl{clear:left; padding-left: 20px}
 dt,dd{float:left;}
-
+dd{margin: 0}
 </style>

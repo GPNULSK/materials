@@ -83,9 +83,9 @@ export default {
   methods: {
 
     getNextWorker(){
-      this.$ajax.get('http://localhost:8082/apply/selectNameBySearch',{
+      this.$ajax.get('http://localhost:8082/ready/selectNameBySearch',{
         params: {
-          name:this.warehouseWorker,
+          name:this.workerName,
           roleDetail:'13'
         }
       }).then(res=>{

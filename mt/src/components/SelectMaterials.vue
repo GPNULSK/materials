@@ -96,7 +96,7 @@
             union:'',
             curPage:1,
             totalPage:'',
-            totalRecord:'',
+            totalRecord:0,
             tableData:[]
           }
       },
@@ -139,7 +139,7 @@
           })
         },
         currentPage(val){
-          alert(val)
+        
           this.curPage=val
           this.$ajax.get('http://localhost:8082/apply/getMaterialsList',{
             params:{

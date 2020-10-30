@@ -171,6 +171,13 @@ export default {
   methods: {
 
     submit(){
+      if(this.auditVal==''){
+        this.$message({
+          message:'请选择审核结果',
+          type:'error'
+        })
+        return
+      }
       this.$ajax.get(this.apiUrl+'/sure/save',{
         params: {
           username:this.username,
@@ -205,6 +212,7 @@ export default {
   },
 
   created() {
+
       this.$ajax.get(this.apiUrl+'/sure/edit',{
         params: {
           rid:this.rid
