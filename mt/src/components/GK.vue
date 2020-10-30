@@ -174,8 +174,8 @@ export default {
       }
       this.$ajax.get(this.apiUrl+'/gk/save',{
         params: {
-          username:this.username,
-          uid:this.uid,
+          username:this.$root.username,
+          uid:this.$root.uid,
           rid:this.rid,
           status:this.auditVal,
           comment:this.auditAdavn
@@ -186,7 +186,7 @@ export default {
             message:'保存成功',
             type:'success'
           })
-          this.$router.replace('/GkList')
+          this.$router.go(-1)
         }else{
           this.$message({
             message:'保存出了点问题，稍后再试吧~',

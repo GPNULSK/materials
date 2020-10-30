@@ -130,8 +130,8 @@ export default {
     currentPage(val){
       this.$ajax.get(this.apiUrl+'/gk/list',{
         params: {
-          username:this.username,
-          uid:this.uid,
+          username:this.$root.username,
+          uid:this.$root.uid,
           curPage:val
         }
       }).then(res=>{
@@ -163,8 +163,8 @@ export default {
 
     this.$ajax.get(this.apiUrl+'/gk/list',{
       params: {
-        username:this.username,
-        uid:this.uid,
+        username:this.$root.username,
+        uid:this.$root.uid,
 		curPage:1
       }
     }).then(res=>{

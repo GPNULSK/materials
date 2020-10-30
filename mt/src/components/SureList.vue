@@ -132,11 +132,12 @@ name: "SureList",
   },
   methods: {
 
+    //分页
     currentPage(val){
       this.$ajax.get(this.apiUrl+'/sure/list',{
         params: {
-          username:this.username,
-          uid:this.uid,
+          username:this.$root.username,
+          uid:this.$root.uid,
           curPage:val
         }
       }).then(res=>{
@@ -149,6 +150,7 @@ name: "SureList",
       })
     },
 
+    //批量同意
     plSure(flag){
       let rids='';
       for(let i=0;i<this.multipleSelection.length;i++){
@@ -161,8 +163,8 @@ name: "SureList",
       console.log(rids)
       this.$ajax.get(this.apiUrl+'/sure/plSure',{
         params: {
-          username:this.username,
-          uid:this.uid,
+          username:this.$root.username,
+          uid:this.$root.uid,
           rids:rids,
           status:flag
         }
@@ -174,7 +176,6 @@ name: "SureList",
               type:'success'
             })
           }
-
           if(flag=='rejectToWarehouse'){
             this.$message({
               message:'批量驳回到仓管员成功',
@@ -192,8 +193,8 @@ name: "SureList",
           //重新加载数据，达到异步效果
           this.$ajax.get(this.apiUrl+'/sure/list',{
             params: {
-              username:this.username,
-              uid:this.uid
+              username:this.$root.username,
+              uid:this.$root.uid
             }
           }).then(res=>{
             this.tableData=res.data
@@ -225,7 +226,7 @@ name: "SureList",
       })
     },
 
-
+    //带id去审核页面
     toAudit(index,row){
       this.rowId=row.id
       this.$router.push({
@@ -235,7 +236,7 @@ name: "SureList",
         }
       })
     },
-
+    //被勾选的清单列表，list集合的形式存储，遍历拿id
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
@@ -247,8 +248,8 @@ name: "SureList",
   created() {
     this.$ajax.get(this.apiUrl+'/sure/list',{
       params: {
-        username:this.username,
-        uid:this.uid,
+        username:this.$root.username,
+        uid:this.$root.uid,
         curPage:1
       }
     }).then(res=>{

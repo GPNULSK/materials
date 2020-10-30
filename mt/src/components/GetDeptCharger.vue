@@ -77,17 +77,17 @@ export default {
   methods: {
     getCurRow(row){
       sessionStorage.setItem("charger",row.usnm)
-      this.$ajax.get('http://localhost:8082/apply/getChargerList',{
+      this.$ajax.get(this.apiUrl+'/apply/getChargerList',{
         params: {
           userId:row.usid,
           username:row.usnm
         }
       })
-      this.$router.push('/applyMain')
+      this.$router.go(-1)
     },
     //输入名字搜索
     getDeptCharger(){
-      this.$ajax.get('http://localhost:8082/apply/selectNameBySearch',{
+      this.$ajax.get(this.apiUrl+'/apply/selectNameBySearch',{
         params: {
           name:this.charger,
           roleDetail:'11'
@@ -102,7 +102,7 @@ export default {
   },
 
   created() {
-    this.$ajax.get('http://localhost:8082/apply/getDeptCharger',{
+    this.$ajax.get(this.apiUrl+'/apply/getDeptCharger',{
       params: {
         userDept:'信息化推进办公室',
       }

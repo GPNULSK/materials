@@ -91,7 +91,7 @@ export default {
           username:row.usnm
         }
       })
-      this.$router.replace('/applyMain')
+      this.$router.go(-1)
     },
 
     goBack(){

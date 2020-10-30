@@ -181,8 +181,8 @@ export default {
 
       this.$ajax.get(this.apiUrl+'/ready/save',{
         params: {
-          username:this.username,
-          uid:this.uid,
+          username:this.$root.username,
+          uid:this.$root.uid,
           rid:this.rowId,
           status:this.readyResult,
           comment:this.comment,
@@ -194,7 +194,7 @@ export default {
             message:'保存成功',
             type:'success'
           })
-          this.$router.replace('/readyList')
+          this.$router.go(-1)
         }
       })
     },

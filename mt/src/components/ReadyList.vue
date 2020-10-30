@@ -160,8 +160,8 @@ name: "ReadyList",
       console.log(rids)
       this.$ajax.get(this.apiUrl+'/ready/agree',{
         params: {
-		username:this.username,
-		uid:this.uid,
+          username:this.$root.username,
+          uid:this.$root.uid,
           rids:rids
         }
       }).then(res=>{
@@ -173,8 +173,8 @@ name: "ReadyList",
           //再发一次请求，达到异步效果
           this.$ajax.get(this.apiUrl+'/ready/list',{
             params: {
-              username:this.username,
-              uid:this.uid,
+              username:this.$root.username,
+              uid:this.$root.uid,
             }
           }).then(res=>{
 
@@ -214,8 +214,8 @@ name: "ReadyList",
           //再发一次请求，达到异步效果
           this.$ajax.get(this.apiUrl+'/ready/list',{
             params: {
-              username:this.username,
-              uid:this.uid,
+              username:this.$root.username,
+              uid:this.$root.uid,
             }
           }).then(res=>{
 
@@ -248,15 +248,15 @@ name: "ReadyList",
   created() {
     this.$ajax.get(this.apiUrl+'/ready/list',{
       params: {
-        username:this.username,
-        uid:this.uid,
+        username:this.$root.username,
+        uid:this.$root.uid,
         curPage:1
       }
     }).then(res=>{
 	  let data=res.data
 	  console.log(data)
 	  this.tableData=data.request
-      this.totalRecord=data.page[0]
+    this.totalRecord=data.page[0]
 	  for(let i=0;i<this.tableData.length;i++){
 	    this.tableData[i].applyDate=data.times[i]
     }

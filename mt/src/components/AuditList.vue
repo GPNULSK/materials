@@ -76,7 +76,7 @@
               label="实物仓管员">
             </el-table-column>
 
-    
+
 
             <el-table-column
               prop="status"
@@ -119,13 +119,14 @@ export default {
     }
   },
   methods:{
-  
+
+    //分页
 	currentPage(val){
-		this.$ajax.get('http://localhost:8082/applications/auditList',{
+		this.$ajax.get(this.apiUrl+'/applications/auditList',{
       params: {
-        username:this.username,
-        uid:this.uid,
-		curPage:val
+        username:this.$root.username,
+        uid:this.$root.uid,
+		    curPage:val
       }
     }).then(res=>{
       console.log(res.data)
@@ -135,7 +136,8 @@ export default {
         this.tableData[i].applyDate=data.time[i]
       }
     })
-	},	
+	},
+    //带上ID去审核页面
     toAudit(index,row){
       this.$router.push({
         path:'/audit',
@@ -148,10 +150,10 @@ export default {
       this.$router.push('/audit')
     },
     handleSelectionChange(val) {
+		  console.log(val)
       this.multipleSelection = val;
-      alert(this.multipleSelection)
     },
-
+    //批量同意
     agrees(){
       let rids='';
       for(let i=0;i<this.multipleSelection.length;i++){
@@ -161,10 +163,10 @@ export default {
           rids=rids+this.multipleSelection[i].id
         }
       }
-      this.$ajax.get('http://localhost:8082/applications/plAudit',{
+      this.$ajax.get(this.apiUrl+'/applications/plAudit',{
         params: {
-          username:this.username,
-          uid:this.uid,
+          username:this.$root.username,
+          uid:this.$root.uid,
           rids:rids,
           status:'0'
         }
@@ -175,10 +177,10 @@ export default {
             type:'success'
           })
           //达到异步同意的效果
-          this.$ajax.get('http://localhost:8082/applications/auditList',{
+          this.$ajax.get(this.apiUrl+'/applications/auditList',{
             params: {
-              username:this.username,
-              uid:this.uid
+              username:this.$root.username,
+              uid:this.$root.uid
             }
           }).then(res=>{
             console.log(res.data)
@@ -202,10 +204,10 @@ export default {
           rids=rids+this.multipleSelection[i].id
         }
       }
-      this.$ajax.get('http://localhost:8082/applications/plAudit',{
+      this.$ajax.get(this.apiUrl+'/applications/plAudit',{
         params: {
-          username:this.username,
-          uid:this.uid,
+          username:this.$root.username,
+          uid:this.$root.uid,
           rids:rids,
           status:'1'
         }
@@ -216,10 +218,10 @@ export default {
             type:'success'
           })
           //达到异步同意的效果
-          this.$ajax.get('http://localhost:8082/applications/auditList',{
+          this.$ajax.get(this.apiUrl+'/applications/auditList',{
             params: {
-              username:this.username,
-              uid:this.uid
+              username:this.$root.username,
+              uid:this.$root.uid
             }
           }).then(res=>{
             console.log(res.data)
@@ -240,10 +242,10 @@ export default {
   },
 
   created() {
-    this.$ajax.get('http://localhost:8082/applications/auditList',{
+    this.$ajax.get(this.apiUrl+'/applications/auditList',{
       params: {
-        username:this.username,
-        uid:this.uid,
+        username:this.$root.username,
+        uid:this.$root.uid,
 		curPage:1
       }
     }).then(res=>{

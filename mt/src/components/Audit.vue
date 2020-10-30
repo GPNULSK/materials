@@ -164,7 +164,7 @@ export default {
         })
         return
       }
-      this.$ajax.get('http://localhost:8082/applications/auditSave',{
+      this.$ajax.get(this.apiUrl+'/applications/auditSave',{
         params:{
           username:this.$root.username,
           id:this.$root.uid,
@@ -174,7 +174,7 @@ export default {
         }
       }).then(res=>{
         if(res.data=='success'){
-          this.$router.replace('/auditList')
+          this.$router.go(-1)
         }
       })
     },
@@ -183,7 +183,7 @@ export default {
     }
   },
   created() {
-    this.$ajax.get('http://localhost:8082/applications/auditEdit',{
+    this.$ajax.get(this.apiUrl+'/applications/auditEdit',{
       params: {
         rid:this.id
       }

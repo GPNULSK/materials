@@ -122,29 +122,38 @@
     methods: {
     //删除申请单，需要参数：用户名，工号，申请单号
       handleDelete(index,row){
-        this.$ajax.get('http://localhost:8082/applications/applyDelete',{
+        this.$ajax.get(this.apiUrl+'/applications/applyDelete',{
           params: {
             username:'林盛凯',
             userId:'114200563',
             applyId:row.id
           }
         }).then(res=>{
-          //实现异步删除的效果
-          this.$ajax.get('http://localhost:8082/applications/applyList').then(res=>{
-            console.log(res.data.applyDate)
-            this.tableData=res.data
-          })
+			if(res.data=='success'){
+				//发起请求得到我的申请列表
+			  this.$ajax.get(this.apiUrl+'/applications/applyList',{
+				params: {
+				  uid:this.$root.uid,
+				  curPage:1
+				  }
+			  }).then(res=>{
+					console.log(res.data)
+				let data=res.data
+					this.tableData=res.data.result
+				this.totalRecord=data.page[0]
+				for(let i=0;i<this.tableData.length;i++){
+				this.tableData[i].applyDate=res.data.time[i]
+				this.tableData[i].readyDate=res.data.bl[i]
+        }
+      })
+			}
 
-          this.$message({
-            message:'删除成功',
-            type:'success'
-          })
         })
       },
-	  
+
 	  currentPage(val){
 		//发起请求得到我的申请列表
-      this.$ajax.get('http://localhost:8082/applications/applyList',{
+      this.$ajax.get(this.apiUrl+'/applications/applyList',{
         params: {
           uid:this.uid,
 		  curPage:val
@@ -166,10 +175,10 @@
     },
     created() {
     //发起请求得到我的申请列表
-      this.$ajax.get('http://localhost:8082/applications/applyList',{
+      this.$ajax.get(this.apiUrl+'/applications/applyList',{
         params: {
-          uid:this.uid,
-		  curPage:1
+          uid:this.$root.uid,
+		      curPage:1
         }
       }).then(res=>{
 			console.log(res.data)
@@ -177,8 +186,8 @@
 		    this.tableData=res.data.result
         this.totalRecord=data.page[0]
         for(let i=0;i<this.tableData.length;i++){
-          this.tableData[i].applyDate=res.data.time[i]
-		      this.tableData[i].readyDate=res.data.bl[i]
+        this.tableData[i].applyDate=res.data.time[i]
+		    this.tableData[i].readyDate=res.data.bl[i]
         }
       })
     }

@@ -49,9 +49,10 @@
           }).then(res=>{
            console.log(res.data)
            let data=res.data
-            console.log(this.$root.uid)
+           
             this.$root.username=data.usnm
             this.$root.uid=data.usid
+			 console.log(this.$root.uid)
           })
       }
     }

@@ -163,7 +163,7 @@
           }
       },
       methods: {
-
+		
         submitApply(){
           if(this.materialName==''||this.warehouseName==''||this.isUrgent==''||
             this.getMaterialMethodVal==''||this.usage==''||this.account==''||this.charger==''||this.warehouseWorker==''){
@@ -191,9 +191,9 @@
               getMaterialMethod:this.getMaterialMethodVal, //领料方式
               isUrgent:this.isUrgent, //是否紧急
               usage:this.usage, //用途
-              userId:this.uid,
+              userId:this.$root.uid,
               userDept:'信息化推进办公室',
-              username:this.username,
+              username:this.$root.username,
             }
           }).then(res=>{
             if (res.data=='success'){
@@ -272,6 +272,8 @@
 
       },
       mounted() {
+		console.log(this.$root.uid)
+		console.log(this.$root.username)
         if(sessionStorage.length>0){
           this.usage=sessionStorage.getItem('usage')
           this.materialCode=sessionStorage.getItem("materialCode");

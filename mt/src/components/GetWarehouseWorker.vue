@@ -81,7 +81,7 @@ export default {
           username:row.usnm
         }
       })
-      this.$router.push('/applyMain')
+      this.$router.go(-1)
     },
 
     //输入名字搜索
