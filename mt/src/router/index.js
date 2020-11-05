@@ -6,7 +6,7 @@ import selectId from '../components/SelectMaterials'
 import selectByWarehouse from '../components/SelectWarehouse'
 import getDcharger from '../components/GetDeptCharger'
 import getWarehouseWorker from '../components/GetWarehouseWorker'
-import applications from '../components/MyApplications'
+import applications from '../components/MyApply'
 import auditList from '../components/AuditList'
 import audit from '../components/Audit'
 import readyList from '../components/ReadyList'
@@ -53,5 +53,7 @@ export default new Router({
     {path: '/getGk',component: getGk},
     {path: '/nextWorker',component: nextWorker}
 
-  ]
+  ],
+  mode:'history',
+  base:'WxMaterial'
 })

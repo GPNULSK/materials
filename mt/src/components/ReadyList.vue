@@ -2,11 +2,11 @@
   <div>
     <el-container>
       <el-header>
-        <el-page-header @back="goBack">
+        <el-page-header @back="goBack" content="仓管员备料列表">
         </el-page-header>
       </el-header>
       <el-main>
-        <el-button size="mini" @click="agrees">批量备料</el-button>
+        <el-button size="mini" type="success" @click="agrees">批量备料</el-button><br><br>
 
         <template>
           <el-table

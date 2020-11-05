@@ -4,7 +4,7 @@
     <el-container>
       <!--  header开始-->
       <el-header style="">
-        <el-page-header @back="goBack" >
+        <el-page-header @back="goBack" content="领料申请">
         </el-page-header>
       </el-header>
       <!-- header结束-->
@@ -163,7 +163,7 @@
           }
       },
       methods: {
-		
+
         submitApply(){
           if(this.materialName==''||this.warehouseName==''||this.isUrgent==''||
             this.getMaterialMethodVal==''||this.usage==''||this.account==''||this.charger==''||this.warehouseWorker==''){

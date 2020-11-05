@@ -10,7 +10,7 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+   // proxyTable: {},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -19,6 +19,22 @@ module.exports = {
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
+    // --------------新添加的代理内容-----------------------------
+    // 原本proxyTable属性中对象为空，在此进行proxy代理配置（可以跨域）
+    proxyTable: {
+      '/wx': {
+        target: 'http://129.204.225.246:8080',   // target表示代理的服务器url
+        secure:false,
+        changeOrigin:true,
+        ws:true,
+        pathRewrite: {     // pathRewrite表示路径重写，key表示一个正则，value表示别名
+          '^/wx': '/wx'   //
+        }
+      },
+
+
+    },
+    // ---------------------------------------------------------
 
 
     /**
@@ -43,7 +59,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/',
 
     /**
      * Source Maps

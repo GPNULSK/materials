@@ -75,7 +75,7 @@ export default {
     getCurRow(row){
       sessionStorage.setItem("warehouseWorker",row.usnm);
       //告诉后台选中了哪个仓管员
-      this.$ajax.get('http://localhost:8082/apply/getWarehouseWorkerList',{
+      this.$ajax.get(this.apiUrl+'/apply/getWarehouseWorkerList',{
         params: {
           userId:row.usid,
           username:row.usnm
@@ -86,7 +86,7 @@ export default {
 
     //输入名字搜索
     getWarehouseWorker(){
-      this.$ajax.get('http://localhost:8082/apply/selectNameBySearch',{
+      this.$ajax.get(this.apiUrl+'/apply/selectNameBySearch',{
         params: {
           name:this.warehouseWorker,
           roleDetail:'13'
@@ -101,7 +101,7 @@ export default {
     }
   },
   mounted() {
-    this.$ajax.get('http://localhost:8082/apply/getWarehouseWorker13',{
+    this.$ajax.get(this.apiUrl+'/apply/getWarehouseWorker13',{
       params: {
         wlgroupCode:sessionStorage.getItem("materialGroupCode"),
       }

@@ -4,7 +4,9 @@
 
 <script>
 
-  const apiUrl='http://localhost:8082';
+
+
+  const apiUrl=process.env.BASE_API;
   const username='';
   const uid='';
 

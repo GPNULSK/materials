@@ -3,7 +3,7 @@
 
     <el-container>
       <el-header>
-        <el-page-header @back="goBack">
+        <el-page-header @back="goBack" content="主管审批列表">
         </el-page-header>
       </el-header>
       <el-main>

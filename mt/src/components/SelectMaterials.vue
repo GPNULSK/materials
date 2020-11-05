@@ -121,7 +121,7 @@
           })
         },
         getMaterialName(){
-          this.$ajax.get('http://localhost:8082/apply/getMaterialsList',{
+          this.$ajax.get(this.apiUrl+'/apply/getMaterialsList',{
             params:{
               name:this.materialName,
               curPage:this.curPage
@@ -139,9 +139,9 @@
           })
         },
         currentPage(val){
-        
+
           this.curPage=val
-          this.$ajax.get('http://localhost:8082/apply/getMaterialsList',{
+          this.$ajax.get(this.apiUrl+'/apply/getMaterialsList',{
             params:{
               name:this.materialName,
               curPage:this.curPage

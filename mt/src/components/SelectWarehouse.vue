@@ -67,7 +67,7 @@
       mounted() {
         let code=sessionStorage.getItem("materialCode")
         console.log(code)
-        this.$ajax.get('http://localhost:8082/apply/getWarehouse',{
+        this.$ajax.get(this.apiUrl+'/apply/getWarehouse',{
           params: {
             code: code
           }
@@ -84,7 +84,7 @@
           this.inventory=row.qhnd
 		      sessionStorage.setItem("inventory",row.qhnd)
           //自动带出仓管员
-          this.$ajax.get('http://localhost:8082/apply/getWarehouseWorkerAuto',{
+          this.$ajax.get(this.apiUrl+'/apply/getWarehouseWorkerAuto',{
             params: {
               materialCode:sessionStorage.getItem("materialCode"),
               warehouseCode:row.cwar
@@ -95,7 +95,7 @@
             }
           })
           //
-          this.$ajax.get('http://localhost:8082/apply/getWarehouseCode',{
+          this.$ajax.get(this.apiUrl+'/apply/getWarehouseCode',{
             params: {
               code:row.cwar,
               warehouseName1:row.dsca2,

@@ -1,7 +1,7 @@
 <template>
 
   <el-container>
-    <el-header><el-page-header @back="goBack" >
+    <el-header><el-page-header @back="goBack" content="我的申请">
     </el-page-header>
     </el-header>
     <el-main>
@@ -13,10 +13,6 @@
             style="width: 100%">
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <el-button
-                  size="mini"
-                  @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                <br><br>
                 <el-button
                   size="mini"
                   type="danger"
@@ -112,7 +108,7 @@
 
 <script>
   export default {
-  name: "MyApplications",
+  name: "MyApply",
   data(){
     return{
       tableData:[],
