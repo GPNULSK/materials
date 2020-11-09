@@ -6,7 +6,7 @@
 
 
 
-  const apiUrl=process.env.BASE_API;
+  const apiUrl='http://weixin.landa.com.cn:8094/springboot'
   const username='';
   const uid='';
 

@@ -11,7 +11,8 @@
       <el-main style="padding: 0">
         <span>选择领料仓库:</span>
         <el-input v-model="warehouse"   style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
-        <br><br>
+        <br>
+        <span style="font-size: small;color: #dd6161">仓库加载需要几秒钟时间，请耐心..</span>
         <div class="table_div">
           <el-table
             :data="tableData"

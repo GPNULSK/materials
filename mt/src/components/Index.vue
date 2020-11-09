@@ -27,11 +27,7 @@
       <el-col :span="8"><div>
         <el-button type="success" @click="toLL">领料员确认</el-button>
       </div></el-col>
-    </el-row>第二次部署
-    <br>
-    {{code}}<br>
-    {{token}}<br>
-    {{userId}}
+    </el-row>
 
 
 
@@ -49,7 +45,9 @@ import axios from 'axios'
           return {
             token:'',
             code:'',
-            userId:''
+            userId:'',
+            fakeUserId:'',
+            result:'',
           }
         },
 
@@ -80,59 +78,51 @@ import axios from 'axios'
       created() {
 
 
-          //从URL中拿到企业微信的code
-          let curUrl=window.location.href;
-          console.log(curUrl)
-          let dz_url = curUrl.split('#')[0]; //获取#/之前的字符串
-          let cs = dz_url.split('?')[1]; //获取?之后的参数字符串
-          let cs_arr = cs.split('&');    //参数字符串分割为数组
-          let cs1={};
 
-          for(let i=0;i<cs_arr.length;i++) {//遍历数组，拿到json对象
-            cs1[cs_arr[i].split('=')[0]] = cs_arr[i].split('=')[1]
-          }
-          this.code=cs1.code
-          console.log('从企业微信获取到的code：'+cs1.code)
+          if( this.$root.username!='' && this.$root.uid!=''){
+            console.log("用户名和工号不为空")
+          }else{
 
+            console.log("用户名和工号为空")
+            //从URL中拿到企业微信的code
+            let curUrl=window.location.href;
+            console.log(curUrl)
+            let dz_url = curUrl.split('#')[0]; //获取#/之前的字符串
+            let cs = dz_url.split('?')[1]; //获取?之后的参数字符串
+            let cs_arr = cs.split('&');    //参数字符串分割为数组
+            let cs1={};
 
-
-          let url='http://175.75.200.53:8006/springboot'
-          //从后端拿token-----------------------------------------------------
-          this.$ajax.get(this.apiUrl+'/wx/getToken').then(res=>{
-            this.token=res.data
-            console.log("从Redis拿到的token值："+res.data)
-          })
-
-        this.$ajax.get('/wx/dist').then(res=>{
-          console.log(res.data)
-        })
-
-        //有了code和token后，发请求从企业微信获取用户id
-          this.$ajax.get('http://localhost:8080/wx',{
-            params: {
-              suite_access_token:'VfIXGr4Fx4V9Ed-jMRzvzfdeGyqHiNrXnnVWCU-qW0-ekMfMupb-9wZFQMyhkQwcFhS89SagaAWXS9ugm1EHFbxnQKUx1JBnx9vQ2U83Dac_zeG8aEvLhnncq9IAcej73vrOnSGyt828IlL-jeXLoTWbVtbvCSHD1ZsVi5EiDOQIIwpFarN8bFBb6mbwSm1bHPBZvv-E2WfDxja_rbhDAA',
-              code:this.code
+            for(let i=0;i<cs_arr.length;i++) {//遍历数组，拿到json对象
+              cs1[cs_arr[i].split('=')[0]] = cs_arr[i].split('=')[1]
             }
-          }).then(res=>{
-            let data=res.data
-            console.log("根据code和token拿到的完整数据："+res.data)
-            console.log('拿到的userId'+data.UserId)
-            this.userId=data.UserId
-          })
+            this.code=cs1.code
+            console.log('从企业微信获取到的code：'+cs1.code)
 
-        //有了工号之后，从后端拿到用户名，并把工号和用户名放到global.vue的全局变量中
-        this.$ajax.get(this.apiUrl+'/apply/loginUserInfo',{
-          params: {
-            uid:this.userId
+
+            this.$ajax.get(this.apiUrl+'/wx/getUser',{
+              params: {
+                code:this.code
+              }
+            }).then(res=>{
+              this.userId=res.data
+
+              //有了工号之后，从后端拿到用户名，并把工号和用户名放到global.vue的全局变量中
+              this.$ajax.get(this.apiUrl+'/apply/loginUserInfo',{
+                params: {
+                  uid:this.userId
+                }
+              }).then(res=>{
+                console.log(res.data)
+                let data=res.data
+                console.log('拿到的用户名：'+data.usnm)
+                this.$root.username=data.usnm
+                this.$root.uid=data.usid
+                sessionStorage.setItem("curUser",data.usnm)
+                sessionStorage.setItem("curUid",data.usid)
+                console.log('拿到的用户id：'+this.$root.uid)
+              })
+            })
           }
-        }).then(res=>{
-          console.log(res.data)
-          let data=res.data
-          console.log('拿到的用户名：'+data.usnm)
-          this.$root.username=data.usnm
-          this.$root.uid=data.usid
-          console.log('拿到的用户id：'+this.$root.uid)
-        })
 
       }
     }

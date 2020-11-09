@@ -174,7 +174,16 @@ export default {
         }
       }).then(res=>{
         if(res.data=='success'){
+          this.$message({
+            message:'保存成功',
+            type:'success'
+          })
           this.$router.go(-1)
+        }else{
+          this.$message({
+            message:'保存出错，请稍后再试或联系开发人员',
+            type:'error'
+          })
         }
       })
     },

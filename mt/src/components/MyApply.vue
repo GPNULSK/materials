@@ -126,6 +126,10 @@
           }
         }).then(res=>{
 			if(res.data=='success'){
+			  this.$message({
+          message:'删除成功',
+          type:'success'
+        })
 				//发起请求得到我的申请列表
 			  this.$ajax.get(this.apiUrl+'/applications/applyList',{
 				params: {
@@ -148,7 +152,7 @@
       },
 
 	  currentPage(val){
-		//发起请求得到我的申请列表
+
       this.$ajax.get(this.apiUrl+'/applications/applyList',{
         params: {
           uid:this.uid,

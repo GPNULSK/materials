@@ -195,6 +195,11 @@ export default {
             type:'success'
           })
           this.$router.go(-1)
+        }else{
+          this.$message({
+            message:'保存出错，请稍后再试或联系开发人员',
+            type:'error'
+          })
         }
       })
     },

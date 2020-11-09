@@ -192,15 +192,16 @@
               isUrgent:this.isUrgent, //是否紧急
               usage:this.usage, //用途
               userId:this.$root.uid,
-              userDept:'信息化推进办公室',
+              userDept:'',
               username:this.$root.username,
             }
           }).then(res=>{
             if (res.data=='success'){
               this.$message({
-                message:'申请成功，等到审批',
+                message:'申请成功，请等待审批',
                 type:"success"
               })
+              this.$root.username=sessionStorage.getItem('')
               this.$router.replace('/index')
               sessionStorage.clear();
             }else {
@@ -272,12 +273,19 @@
 
       },
       mounted() {
-		console.log(this.$root.uid)
-		console.log(this.$root.username)
+        console.log(this.$root.uid)
+        console.log(this.$root.username)
         if(sessionStorage.length>0){
-          this.usage=sessionStorage.getItem('usage')
-          this.materialCode=sessionStorage.getItem("materialCode");
-          this.materialName=sessionStorage.getItem("wlname");
+          if(sessionStorage.getItem('usage')!=null){
+            this.usage=sessionStorage.getItem('usage')
+          }
+          if(sessionStorage.getItem("materialCode")!=null){
+            this.materialCode=sessionStorage.getItem("materialCode");
+          }
+          if(sessionStorage.getItem("wlname")!=null){
+            this.materialName=sessionStorage.getItem("wlname");
+          }
+
           this.materialType=sessionStorage.getItem("wltype");
           this.union=sessionStorage.getItem("unitcn");
           this.warehouseName=sessionStorage.getItem("warehouseName")
@@ -285,12 +293,18 @@
           this.charger=sessionStorage.getItem("charger")
           this.warehouseWorker=sessionStorage.getItem("warehouseWorker")
           this.source=sessionStorage.getItem("source")
-          this.account=sessionStorage.getItem("account")
-          this.isUrgent=sessionStorage.getItem("isUrgent")
-          this.getMaterialMethodVal=sessionStorage.getItem("getMaterialMethod")
+          if(sessionStorage.getItem("account")!=null){
+            this.account=sessionStorage.getItem("account")
+          }
+          if(sessionStorage.getItem("isUrgent")!=null){
+            this.isUrgent=sessionStorage.getItem("isUrgent")
+          }
+          if(sessionStorage.getItem("getMaterialMethod")!=null){
+            this.getMaterialMethodVal=sessionStorage.getItem("getMaterialMethod")
+          }
+
 		      this.storeAccount=sessionStorage.getItem("inventory")
           this.gkWorkerName=sessionStorage.getItem('gkWorker')
-          console.log(sessionStorage.getItem("materialCode"))
         }
       }
     }

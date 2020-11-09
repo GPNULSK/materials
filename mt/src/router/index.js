@@ -54,6 +54,4 @@ export default new Router({
     {path: '/nextWorker',component: nextWorker}
 
   ],
-  mode:'history',
-  base:'WxMaterial'
 })
