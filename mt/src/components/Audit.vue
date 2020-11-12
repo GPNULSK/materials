@@ -61,7 +61,7 @@
           <dt>领料方式：</dt><dd style="color: #5daf34;">{{pickingType}}</dd>
         </dl>
         <dl>
-          <dt>单位主管：</dt><dd style="color: #5daf34;">{{materialType}}</dd>
+          <dt>单位主管：</dt><dd style="color: #5daf34;">{{charger}}</dd>
         </dl>
 
 
@@ -141,6 +141,7 @@ export default {
       warehouseWorker:'',
       applyer:'',
       nextWorker:'',
+      charger:'',
       options:[
         {
           value:'通过',
@@ -214,7 +215,8 @@ export default {
 	  this.warehouseWorker=data.result.warehouseWorkerId.usnm,
 	  this.applyer=data.result.applyer,
 	  this.applyDate=data.time[0],
-	  this.materialType=data.result.materialType
+	  this.materialType=data.result.materialType,
+    this.charger=data.result.deptHeadsId.usnm
     })
   }
 }
@@ -225,4 +227,5 @@ export default {
 dl{clear:left; padding-left: 20px}
 dt,dd{float:left;}
 dd{margin: 0}
+
 </style>

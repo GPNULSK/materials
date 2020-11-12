@@ -194,10 +194,16 @@ name: "SureList",
           this.$ajax.get(this.apiUrl+'/sure/list',{
             params: {
               username:this.$root.username,
-              uid:this.$root.uid
+              uid:this.$root.uid,
+              curPage:1
             }
           }).then(res=>{
-            this.tableData=res.data
+            let data=res.data;
+            this.tableData=data.result;
+            for(let i=0;i<this.tableData.length;i++){
+              this.tableData[i].applyDate=data.applyTime[i];
+              this.tableData[i].readyDate=data.readyTime[i]
+            }
           })
         }else{
           if(flag=='agree'){

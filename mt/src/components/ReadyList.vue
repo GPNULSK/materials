@@ -6,7 +6,9 @@
         </el-page-header>
       </el-header>
       <el-main>
-        <el-button size="mini" type="success" @click="agrees">批量备料</el-button><br><br>
+        <el-button size="mini" type="success" @click="agrees">批量备料</el-button><br>
+        <span style="font-size: smaller;color:darkolivegreen;">{{tip}}</span>
+        <br><br>
 
         <template>
           <el-table
@@ -75,15 +77,6 @@
               label="实物仓管员">
             </el-table-column>
 
-            <el-table-column
-              prop="readyDate"
-              label="备料时间">
-            </el-table-column>
-
-            <el-table-column
-              prop="readyNumber"
-              label="备料数量">
-            </el-table-column>
 
 
             <el-table-column
@@ -125,6 +118,7 @@ name: "ReadyList",
       tableData:[],
       multipleSelection:[],
       totalRecord:0,
+      tip:'加载中...'
     }
   },
   methods:{
@@ -175,14 +169,16 @@ name: "ReadyList",
             params: {
               username:this.$root.username,
               uid:this.$root.uid,
+              curPage:1
             }
           }).then(res=>{
-
             let data=res.data
-
+            console.log(data)
             this.tableData=data.request
-
-            this.tableData.applyDate=data.times
+            this.totalRecord=data.page[0]
+            for(let i=0;i<this.tableData.length;i++){
+              this.tableData[i].applyDate=data.times[i]
+            }
           })
         }else{
           this.$message({
@@ -216,12 +212,16 @@ name: "ReadyList",
             params: {
               username:this.$root.username,
               uid:this.$root.uid,
+              curPage:1
             }
           }).then(res=>{
-
             let data=res.data
+            console.log(data)
             this.tableData=data.request
-            this.tableData.applyDate=data.times
+            this.totalRecord=data.page[0]
+            for(let i=0;i<this.tableData.length;i++){
+              this.tableData[i].applyDate=data.times[i]
+            }
           })
         }else{
           this.$message({
@@ -253,13 +253,14 @@ name: "ReadyList",
         curPage:1
       }
     }).then(res=>{
-	  let data=res.data
-	  console.log(data)
-	  this.tableData=data.request
-    this.totalRecord=data.page[0]
-	  for(let i=0;i<this.tableData.length;i++){
-	    this.tableData[i].applyDate=data.times[i]
-    }
+      this.tip='加载完成'
+      let data=res.data
+      console.log(data)
+      this.tableData=data.request
+      this.totalRecord=data.page[0]
+      for(let i=0;i<this.tableData.length;i++){
+        this.tableData[i].applyDate=data.times[i]
+      }
     })
   }
 }

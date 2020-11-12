@@ -32,12 +32,12 @@
           </el-table-column>
           <el-table-column
             label="部门名称"
-            prop = "dpnm"
+            prop = "dept.dpnm"
             align="center">
           </el-table-column>
           <el-table-column
             label="权限名称"
-            prop = "roleName"
+            prop = "roles.roleName"
             align="center">
           </el-table-column>
           <el-table-column
@@ -58,6 +58,16 @@
         </el-table>
       </div>
     </el-main>
+
+    <el-footer>
+      <el-pagination
+        background
+        @current-change="currentPage"
+        layout="prev, pager, next"
+        :total=totalRecord>
+      </el-pagination>
+    </el-footer>
+
   </el-container>
   </div>
 </template>
@@ -69,6 +79,7 @@ export default {
     return{
       warehouseWorker:'',
       tableData:[],
+      totalRecord:0
     }
   },
   methods:{
@@ -96,18 +107,34 @@ export default {
       })
     },
 
+    //分页
+    currentPage(val){
+      this.$ajax.get(this.apiUrl+'/apply/getWarehouseWorker13',{
+        params: {
+          wlgroupCode:sessionStorage.getItem("materialGroupCode"),
+          curPage:val
+        }
+      }).then(res=>{
+        console.log(res.data)
+        this.tableData=res.data.result
+        this.totalRecord=res.data.page[0]
+      })
+    },
+
     goBack(){
       this.$router.go(-1)
     }
   },
-  mounted() {
+  created() {
     this.$ajax.get(this.apiUrl+'/apply/getWarehouseWorker13',{
       params: {
         wlgroupCode:sessionStorage.getItem("materialGroupCode"),
+		    curPage:1
       }
     }).then(res=>{
       console.log(res.data)
-      this.tableData=res.data
+      this.tableData=res.data.result
+      this.totalRecord=res.data.page[0]
     })
   }
 }

@@ -77,8 +77,26 @@ import axios from 'axios'
 
       created() {
 
+        //
+        // //有了工号之后，从后端拿到用户名，并把工号和用户名放到global.vue的全局变量中
+        // //测试使用
+        // this.$ajax.get(this.apiUrl+'/apply/loginUserInfo',{
+        //   params: {
+        //     uid:'682504'
+        //   }
+        // }).then(res=>{
+        //   console.log(res.data)
+        //   let data=res.data
+        //   console.log('拿到的用户名：'+data.usnm)
+        //   this.$root.username=data.usnm
+        //   this.$root.uid=data.usid
+        //   sessionStorage.setItem("curUser",data.usnm)
+        //   sessionStorage.setItem("curUid",data.usid)
+        //   console.log('拿到的用户id：'+this.$root.uid)
+        // })
 
 
+        //开发环境下使用
           if( this.$root.username!='' && this.$root.uid!=''){
             console.log("用户名和工号不为空")
           }else{
@@ -124,7 +142,7 @@ import axios from 'axios'
             })
           }
 
-      }
+        }
     }
 </script>
 

@@ -180,11 +180,16 @@ export default {
           this.$ajax.get(this.apiUrl+'/applications/auditList',{
             params: {
               username:this.$root.username,
-              uid:this.$root.uid
+              uid:this.$root.uid,
+              curPage:1
             }
           }).then(res=>{
             console.log(res.data)
-            this.tableData=res.data
+            let data=res.data;
+            this.tableData=data.result
+            for(let i=0;i<this.tableData.length;i++){
+              this.tableData[i].applyDate=data.time[i]
+            }
           })
         }else{
           this.$message({
@@ -221,11 +226,16 @@ export default {
           this.$ajax.get(this.apiUrl+'/applications/auditList',{
             params: {
               username:this.$root.username,
-              uid:this.$root.uid
+              uid:this.$root.uid,
+              curPage:1
             }
           }).then(res=>{
             console.log(res.data)
-            this.tableData=res.data
+            let data=res.data;
+            this.tableData=data.result
+            for(let i=0;i<this.tableData.length;i++){
+              this.tableData[i].applyDate=data.time[i]
+            }
           })
         }else{
           this.$message({
@@ -246,7 +256,7 @@ export default {
       params: {
         username:this.$root.username,
         uid:this.$root.uid,
-		curPage:1
+		    curPage:1
       }
     }).then(res=>{
       console.log(res.data)

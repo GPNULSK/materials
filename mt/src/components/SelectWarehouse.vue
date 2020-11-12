@@ -65,7 +65,8 @@
 
           }
       },
-      mounted() {
+      //自动加载
+      created() {
         let code=sessionStorage.getItem("materialCode")
         console.log(code)
         this.$ajax.get(this.apiUrl+'/apply/getWarehouse',{
@@ -78,23 +79,13 @@
           this.tableData=data
         })
       },
+
       methods: {
         getCurId(row){
           sessionStorage.setItem("warehouseName",row.dsca2);
           sessionStorage.setItem("warehouseCode",row.cwar)
           this.inventory=row.qhnd
 		      sessionStorage.setItem("inventory",row.qhnd)
-          //自动带出仓管员
-          this.$ajax.get(this.apiUrl+'/apply/getWarehouseWorkerAuto',{
-            params: {
-              materialCode:sessionStorage.getItem("materialCode"),
-              warehouseCode:row.cwar
-            }
-          }).then(res=>{
-            if(res.data!=null){
-              sessionStorage.setItem("warehouseWorker",res.data.nsmn)
-            }
-          })
           //
           this.$ajax.get(this.apiUrl+'/apply/getWarehouseCode',{
             params: {
@@ -105,10 +96,6 @@
           })
           this.$router.push({
             path:'/applyMain',
-            // query: {
-            //   warehouse:this.warehouse,
-            //   warehouseCode:row.cwar
-            // }
           })
         },
 

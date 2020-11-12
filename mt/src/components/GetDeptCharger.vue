@@ -32,12 +32,12 @@
             </el-table-column>
             <el-table-column
               label="部门名称"
-              prop = "dpnm"
+              prop = "dept.dpnm"
               align="center">
             </el-table-column>
             <el-table-column
               label="权限名称"
-              prop = "roleName"
+              prop = "roles.roleName"
               align="center">
             </el-table-column>
             <el-table-column
@@ -58,6 +58,15 @@
           </el-table>
         </div>
       </el-main>
+
+      <el-footer>
+        <el-pagination
+          background
+          @current-change="currentPage"
+          layout="prev, pager, next"
+          :total=totalRecord>
+        </el-pagination>
+      </el-footer>
     </el-container>
 
 
@@ -71,6 +80,7 @@ export default {
     return{
       charger:'',
       tableData:[],
+      totalRecord:0,
     }
   },
 
@@ -96,6 +106,22 @@ export default {
         this.tableData=res.data
       })
     },
+
+    //分页
+    currentPage(val){
+      this.$ajax.get(this.apiUrl+'/apply/getDeptCharger',{
+        params: {
+          userDept:'',
+          curPage:val
+        }
+      }).then(res=>{
+        console.log(res.data)
+        let data=res.data
+        this.tableData=data.result
+        this.totalRecord=data.page[0]
+      })
+    },
+
     goBack(){
       this.$router.go(-1)
     }
@@ -104,11 +130,15 @@ export default {
   created() {
     this.$ajax.get(this.apiUrl+'/apply/getDeptCharger',{
       params: {
-        userDept:'信息化推进办公室',
+        userDept:'',
+        curPage:1
       }
     }).then(res=>{
       console.log(res.data)
-      this.tableData=res.data
+      let data=res.data
+      this.tableData=data.result
+      this.totalRecord=data.page[0]
+      console.log(data.page[0])
     })
   }
 }

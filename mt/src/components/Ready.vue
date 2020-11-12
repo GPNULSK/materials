@@ -96,7 +96,7 @@
         </template><br><br>
 
         <span>备料数量：</span>
-        <el-input v-model="account"  size="mini" style="width: 150px"></el-input><br><br>
+        <el-input v-model="account" value="this.demand"  size="mini" style="width: 150px" ></el-input><br><br>
 
         <span>审批意见：</span>
         <el-input size="mini" type="textarea" v-model="comment" style="width: 200px"></el-input>
@@ -160,8 +160,8 @@ export default {
       this.$router.push('/nextWorker')
     },
     submit(){
-		console.log(this.neWorker)
-      if(this.neWorker==''){
+      if(this.neWorker==null){
+
         if(this.readyResult==''){
           this.$message({
             message:'请选择审核结果',
@@ -169,10 +169,16 @@ export default {
           })
           return
         }
-
-        if(this.account==''){
+        if(this.readyResult!=''&&this.account==''){
           this.$message({
             message:'请输入备料数量',
+            type:'error'
+          })
+          return
+        }
+        if(this.readyResult=='驳回'&&this.comment==''){
+          this.$message({
+            message:'请输入审批意见',
             type:'error'
           })
           return
@@ -202,6 +208,7 @@ export default {
           })
         }
       })
+
     },
 
     goBack(){

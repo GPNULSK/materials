@@ -7,8 +7,8 @@
         </el-page-header>
       </el-header>
       <el-main style="padding: 0">
-        <span>物料名称:</span>
-        <el-input v-model="materialName"   style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+        <span>物料代码:</span>
+        <el-input v-model="code1"   style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
         <el-button size="mini" type="success" @click="getMaterialName">查询</el-button>
         <br><br>
         <div class="table_div">
@@ -97,6 +97,7 @@
             curPage:1,
             totalPage:'',
             totalRecord:0,
+            code1:'',
             tableData:[]
           }
       },
@@ -121,12 +122,21 @@
           })
         },
         getMaterialName(){
+          this.$message({
+            showClose: true,
+            message: '搜索中...'
+          })
           this.$ajax.get(this.apiUrl+'/apply/getMaterialsList',{
             params:{
-              name:this.materialName,
+              code:this.code1,
               curPage:this.curPage
             }
           }).then(res=>{
+            this.$message({
+              showClose: true,
+              message: '搜索成功...',
+              type: 'success'
+            });
             console.log(res.data)
             let data=res.data;
             this.tableData=data.materials
@@ -139,14 +149,22 @@
           })
         },
         currentPage(val){
-
+          this.$message({
+            showClose: true,
+            message: '翻页中......'
+          })
           this.curPage=val
           this.$ajax.get(this.apiUrl+'/apply/getMaterialsList',{
             params:{
-              name:this.materialName,
-              curPage:this.curPage
+              code:this.code1,
+              curPage:val
             }
           }).then(res=>{
+            this.$message({
+              showClose: true,
+              message: '翻页成功...',
+              type: 'success'
+            });
             console.log(res.data)
             let data=res.data;
             this.tableData=data.materials
