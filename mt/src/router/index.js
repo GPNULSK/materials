@@ -20,6 +20,7 @@ import gklist from '../components/GKlist'
 import getGk from '../components/GetGK'
 import gk from '../components/GK'
 import nextWorker from '../components/NextWorker'
+import error from '../components/Error'
 
 Vue.use(Router)
 
@@ -51,7 +52,8 @@ export default new Router({
     {path: '/GkList',component: gklist},
     {path: '/gk',component: gk},
     {path: '/getGk',component: getGk},
-    {path: '/nextWorker',component: nextWorker}
+    {path: '/nextWorker',component: nextWorker},
+    {path: '/error',component: error}
 
   ],
 })

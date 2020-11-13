@@ -160,31 +160,36 @@ export default {
       this.$router.push('/nextWorker')
     },
     submit(){
-      if(this.neWorker==null){
+      if(this.neWorker==null || this.neWorker==''){
 
-        if(this.readyResult==''){
+        if(this.readyResult=='' || this.readyResult==null){
           this.$message({
             message:'请选择审核结果',
             type:'error'
           })
           return
         }
-        if(this.readyResult!=''&&this.account==''){
-          this.$message({
-            message:'请输入备料数量',
-            type:'error'
-          })
+
+        if(this.readyResult=='备料'){
+          if(this.comment=='' || this.comment==null){
+            this.$message({
+              message:'请输入备料数量',
+              type:'error'
+            })
+          }
           return
         }
-        if(this.readyResult=='驳回'&&this.comment==''){
-          this.$message({
-            message:'请输入审批意见',
-            type:'error'
-          })
+
+        if(this.readyResult=='驳回'){
+          if(this.comment=='' || this.comment==null){
+            this.$message({
+              message:'请输入审批意见',
+              type:'error'
+            })
+          }
           return
         }
       }
-
       this.$ajax.get(this.apiUrl+'/ready/save',{
         params: {
           username:this.$root.username,
