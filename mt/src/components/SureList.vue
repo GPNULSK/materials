@@ -8,7 +8,8 @@
     <el-main>
       <el-button size='mini' type="success" @click="plSure('agree')">批量通过</el-button>
       <el-button size='mini' type="error" @click="plSure('rejectToWarehouse')">批量驳回到仓管员</el-button>
-      <el-button size='mini' type="danger" @click="plSure('rejectToApply')">批量驳回</el-button><br><br>
+      <el-button size='mini' type="danger" @click="plSure('rejectToApply')">批量驳回</el-button><br>
+      <span style="font-size: smaller;color:darkolivegreen;">{{tip}}</span><br><br>
       <template>
         <el-table
           border
@@ -128,6 +129,7 @@ name: "SureList",
       rowId:'',
       multipleSelection:[],
       totalRecord:0,
+      tip:'正在加载...'
     }
   },
   methods: {
@@ -259,6 +261,7 @@ name: "SureList",
         curPage:1
       }
     }).then(res=>{
+      this.tip='加载完成...'
       let data=res.data;
       this.tableData=data.result;
       for(let i=0;i<this.tableData.length;i++){

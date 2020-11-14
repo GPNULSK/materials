@@ -9,6 +9,7 @@
       <el-main>
         <el-button size="mini" @click="agrees">同意</el-button>
         <el-button size="mini" @click="diaAgree">驳回</el-button><br><br>
+        <span style="font-size: smaller;color:darkolivegreen;">{{tip}}</span><br><br>
         <template>
           <el-table
             border
@@ -115,7 +116,8 @@ export default {
     return{
       tableData:[],
       multipleSelection: [],
-	  totalRecord:0
+	    totalRecord:0,
+      tip:'正在加载...'
     }
   },
   methods:{
@@ -155,6 +157,7 @@ export default {
     },
     //批量同意
     agrees(){
+	    this.tip='正在批量同意...'
       let rids='';
       for(let i=0;i<this.multipleSelection.length;i++){
         if(i!=this.multipleSelection.length-1){
@@ -171,6 +174,7 @@ export default {
           status:'0'
         }
       }).then(res=>{
+        this.tip='批量同意成功...'
         if(res.data=='success'){
           this.$message({
             message:'批量同意保存成功',
@@ -192,6 +196,7 @@ export default {
             }
           })
         }else{
+          this.tip='批量同意失败...'
           this.$message({
             message:'批量同意保存失败,请稍后再试',
             type:'error'
@@ -201,6 +206,7 @@ export default {
     },
 
     diaAgree(){
+      this.tip='正在批量驳回...'
       let rids='';
       for(let i=0;i<this.multipleSelection.length;i++){
         if(i!=this.multipleSelection.length-1){
@@ -217,6 +223,7 @@ export default {
           status:'1'
         }
       }).then(res=>{
+        this.tip='批量驳回成功...'
         if(res.data=='success'){
           this.$message({
             message:'批量驳回保存成功',
@@ -238,6 +245,7 @@ export default {
             }
           })
         }else{
+          this.tip='批量驳回失败...'
           this.$message({
             message:'批量驳回保存失败,请稍后再试',
             type:'error'
@@ -259,6 +267,7 @@ export default {
 		    curPage:1
       }
     }).then(res=>{
+		this.tip='加载完成'
       console.log(res.data)
       let data=res.data;
       this.tableData=data.result

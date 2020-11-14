@@ -1,11 +1,14 @@
 <template>
 
   <el-container>
-    <el-header><el-page-header @back="goBack" content="我的申请">
+    <el-header><el-page-header @back="goBack" content="我的申请"><br>
+
+
     </el-page-header>
     </el-header>
     <el-main>
       <div>
+        <span style="font-size: smaller;color:darkolivegreen;">{{tip}}</span>
         <template>
           <el-table
             border
@@ -112,7 +115,8 @@
   data(){
     return{
       tableData:[],
-      totalRecord:0
+      totalRecord:0,
+      tip:'加载中...'
     }
   },
     methods: {
@@ -120,8 +124,8 @@
       handleDelete(index,row){
         this.$ajax.get(this.apiUrl+'/applications/applyDelete',{
           params: {
-            username:'林盛凯',
-            userId:'114200563',
+            username:this.$root.username,
+            userId:this.$root.uid,
             applyId:row.id
           }
         }).then(res=>{
@@ -137,13 +141,14 @@
 				  curPage:1
 				  }
 			  }).then(res=>{
-					console.log(res.data)
-				let data=res.data
-					this.tableData=res.data.result
-				this.totalRecord=data.page[0]
-				for(let i=0;i<this.tableData.length;i++){
-				this.tableData[i].applyDate=res.data.time[i]
-				this.tableData[i].readyDate=res.data.bl[i]
+          console.log(res.data)
+          let data=res.data
+          this.tip='加载完成'
+          this.tableData=res.data.result
+          this.totalRecord=data.page[0]
+          for(let i=0;i<this.tableData.length;i++){
+          this.tableData[i].applyDate=res.data.time[i]
+          this.tableData[i].readyDate=res.data.bl[i]
         }
       })
 			}
@@ -175,6 +180,7 @@
     },
     created() {
     //发起请求得到我的申请列表
+      this.tip='加载完成'
       this.$ajax.get(this.apiUrl+'/applications/applyList',{
         params: {
           uid:this.$root.uid,

@@ -6,7 +6,7 @@
         </el-page-header>
       </el-header>
       <el-main>
-
+        <span style="font-size: smaller;color:darkolivegreen;">{{tip}}</span><br>
         <template>
           <el-table
             border
@@ -121,6 +121,7 @@ export default {
     return{
 	    tableData:[],
       totalRecord:0,
+      tip:'正在加载...'
     }
   },
 
@@ -168,7 +169,8 @@ export default {
 		curPage:1
       }
     }).then(res=>{
-		console.log(res.data)
+      this.tip='加载完成...'
+		  console.log(res.data)
       let data=res.data;
       this.tableData=data.result
       this.totalRecord=data.page[0]
