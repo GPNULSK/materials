@@ -93,6 +93,10 @@
               warehouseName1:row.dsca2,
               inventory:this.inventory
             }
+          }).then(res=>{
+              let data=res.data
+              console.log(data.usnm)
+              sessionStorage.setItem("wmsWorker",data.usnm)
           })
           this.$router.push({
             path:'/applyMain',

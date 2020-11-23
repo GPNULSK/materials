@@ -273,8 +273,8 @@
 
       },
       mounted() {
-        console.log(this.$root.uid)
-        console.log(this.$root.username)
+		console.log(sessionStorage.getItem("wmsWorker"))
+        
         if(sessionStorage.length>0){
           if(sessionStorage.getItem('usage')!=null){
             this.usage=sessionStorage.getItem('usage')
@@ -305,6 +305,11 @@
 
 		      this.storeAccount=sessionStorage.getItem("inventory")
           this.gkWorkerName=sessionStorage.getItem('gkWorker')
+		  if(sessionStorage.getItem("wmsWorker")!=null){
+			console.log(sessionStorage.getItem("wmsWorker"))
+			this.warehouseWorker=sessionStorage.getItem("wmsWorker")
+		  }
+		  
         }
       }
     }
