@@ -98,8 +98,6 @@
         <span>备料数量：</span>
         <el-input v-model="account" value="this.demand"  size="mini" style="width: 150px" ></el-input><br><br>
 
-          <span>叉版号：</span>
-          <el-input v-model="readyRemark"   size="mini" style="width: 150px" ></el-input><br><br>
 
         <span>审批意见：</span>
         <el-input size="mini" type="textarea" v-model="comment" style="width: 200px"></el-input>
@@ -166,11 +164,7 @@ export default {
     submit(){
       if(this.neWorker==null || this.neWorker==''){
 
-        //珠海凌达，A008库时，叉版号必填
-        if(this.warehouseCode == 'A008'){
-          alert('A008库，叉版号为必填项')
-          return
-        }
+
 
         if(this.readyResult=='' || this.readyResult==null){
           this.$message({

@@ -175,6 +175,14 @@ export default {
   methods: {
 
     submit(){
+      if(this.warehouseCode == 'A008'){
+        if(this.readyRemark ==null || this.readyRemark == ''){
+          alert('A008库，叉版号必填')
+          return
+        }
+      }
+
+
       if(this.auditVal==''){
         this.$message({
           message:'请选择审核结果',
@@ -189,7 +197,7 @@ export default {
           rid:this.rid,
           status:this.auditVal,
           comment:this.auditAdavn,
-          account:this.account,
+          account:this.demand,
           warehouseCode:this.warehouseCode,
           materialCode:this.materialCode,
           readyRemark:this.readyRemark
