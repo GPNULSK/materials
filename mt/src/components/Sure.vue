@@ -76,8 +76,11 @@
           <dt>发料时间：</dt><dd style="color: #5daf34;">{{ sendDate }}</dd>
         </dl>
 
+
         <br><br>
 
+        <span>叉版号：</span>
+        <el-input v-model="readyRemark"   size="mini" style="width: 150px" ></el-input><br><br>
 
         <el-row type="flex" class="row-bg">
           <el-col :span="9">
@@ -149,7 +152,8 @@ export default {
       sendDate:'',
       auditVal:'',
       auditAdavn:'',
-	  deptName:'',
+      readyRemark:'',
+	    deptName:'',
 
       options:[
         {
@@ -184,7 +188,11 @@ export default {
           uid:this.$root.uid,
           rid:this.rid,
           status:this.auditVal,
-          comment:this.auditAdavn
+          comment:this.auditAdavn,
+          account:this.account,
+          warehouseCode:this.warehouseCode,
+          materialCode:this.materialCode,
+          readyRemark:this.readyRemark
         }
       }).then(res=>{
         if (res.data=='success'){

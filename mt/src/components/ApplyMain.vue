@@ -273,8 +273,8 @@
 
       },
       mounted() {
-		console.log(sessionStorage.getItem("wmsWorker"))
-        
+
+
         if(sessionStorage.length>0){
           if(sessionStorage.getItem('usage')!=null){
             this.usage=sessionStorage.getItem('usage')
@@ -291,7 +291,7 @@
           this.warehouseName=sessionStorage.getItem("warehouseName")
           this.warehouseCode=sessionStorage.getItem("warehouseCode")
           this.charger=sessionStorage.getItem("charger")
-          this.warehouseWorker=sessionStorage.getItem("warehouseWorker")
+
           this.source=sessionStorage.getItem("source")
           if(sessionStorage.getItem("account")!=null){
             this.account=sessionStorage.getItem("account")
@@ -305,11 +305,15 @@
 
 		      this.storeAccount=sessionStorage.getItem("inventory")
           this.gkWorkerName=sessionStorage.getItem('gkWorker')
-		  if(sessionStorage.getItem("wmsWorker")!=null){
-			console.log(sessionStorage.getItem("wmsWorker"))
-			this.warehouseWorker=sessionStorage.getItem("wmsWorker")
-		  }
-		  
+          console.log(this.warehouseName == '合格品仓库(WMS)')
+          if(this.warehouseName == '合格品仓库(WMS)'){
+            console.log('该物品在WMS库')
+            console.log(sessionStorage.getItem('wmsWorker'))
+            this.warehouseWorker=sessionStorage.getItem('wmsWorker')
+          }else {
+            this.warehouseWorker=sessionStorage.getItem("warehouseWorker")
+          }
+
         }
       }
     }

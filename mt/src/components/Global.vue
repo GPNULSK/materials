@@ -7,11 +7,11 @@
 
 
   //const apiUrl='http://weixin.landa.com.cn:8094/zzld_material'  //郑州凌达地址
-  //const apiUrl='http://weixin.landa.com.cn:8094/CQLD_material'
-  //const apiUrl='http://weixin.landa.com.cn:8094/springboot'
-  const apiUrl='http://weixin.landa.com.cn:8094/zhld_material'
+  //const apiUrl='http://weixin.landa.com.cn:8094/CQLD_material'  //重庆凌达
+  //const apiUrl='http://weixin.landa.com.cn:8094/springboot'     //合肥凌达
+  const apiUrl='http://weixin.landa.com.cn:8094/zhld_material'    //珠海凌达
   //const apiUrl='http://localhost:8086'
-  //const apiUrl='http://172.75.200.53:8094/springboot'
+  //const apiUrl='http://172.75.200.53:8094/zhld_material'
   const username='';
   const uid='';
 

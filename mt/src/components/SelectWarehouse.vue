@@ -95,12 +95,19 @@
             }
           }).then(res=>{
               let data=res.data
-              console.log(data.usnm)
-              sessionStorage.setItem("wmsWorker",data.usnm)
+              console.log(data)
+              if(row.dsca2 == '合格品仓库(WMS)'){
+                console.log('在选择仓库时确认了，该物品在wms库')
+                sessionStorage.setItem("wmsWorker",data.usnm)
+                console.log(sessionStorage.getItem('wmsWorker'))
+                console.log('接收结束')
+              }
+              console.log('跳转开始')
+              this.$router.push({
+                path:'/applyMain',
+              })
           })
-          this.$router.push({
-            path:'/applyMain',
-          })
+
         },
 
         goBack(){
