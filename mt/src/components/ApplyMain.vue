@@ -3,8 +3,8 @@
     <!--      使用header main footer布局-->
     <el-container>
       <!--  header开始-->
-      <el-header style="">
-        <el-page-header @back="goBack" content="领料申请">
+      <el-header class="header">
+        <el-page-header class="page_header" @back="goBack" content="领料申请">
         </el-page-header>
       </el-header>
       <!-- header结束-->
@@ -44,9 +44,7 @@
         <el-input :required="true" v-model="account"  style="width: 200px" size="mini" placeholder="请输入需求量"></el-input>
         <br><br>
 
-          <span>归口部门:</span>
-          <el-input v-on:click.native="GK" v-model="gkWorkerName" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
-          <br><br>
+
 
 <!--          领料方式-->
         <template>
@@ -91,6 +89,9 @@
           <span>单位主管:</span>
           <el-input v-on:click.native="toGetDeptCharger" v-model="charger" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
           <br><br>
+          <span>归口部门:</span>
+          <el-input v-on:click.native="GK" v-model="gkWorkerName" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+          <br><br>
           <span>实物仓管:</span>
           <el-input v-on:click.native="toGetWarehouseWorker" v-model="warehouseWorker" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
           <br><br>
@@ -126,6 +127,7 @@
             source:'',
             storeAccount:'',
             gkWorkerName:'',
+            wlgroupCode:'',
 
             getMaterialMethod:[
               {
@@ -263,7 +265,12 @@
           this.$router.go(-1)
         },
         GK(){
-          this.$router.push('/getGk')
+          this.$router.push({
+            path: '/getGk',
+            query: {
+              wlgroupCode: this.wlgroupCode
+            }
+          })
         },
         clearSession(){
           sessionStorage.clear();
@@ -272,10 +279,11 @@
 
 
       },
-      mounted() {
-
+      created() {
 
         if(sessionStorage.length>0){
+          this.wlgroupCode = sessionStorage.getItem('materialGroupCode')
+
           if(sessionStorage.getItem('usage')!=null){
             this.usage=sessionStorage.getItem('usage')
           }
@@ -320,5 +328,16 @@
 </script>
 
 <style scoped>
+
+  /*.header{*/
+  /*  background-color: #ffcb7c;*/
+  /*}*/
+  /*.page_header content {*/
+  /*  color: white;*/
+  /*}*/
+
+  .el-page-header.page_header {
+    margin-top: 24px;
+  }
 
 </style>

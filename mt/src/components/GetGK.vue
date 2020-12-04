@@ -6,8 +6,8 @@
         </el-page-header>
       </el-header>
       <el-main>
-        <span>单位主管:</span>
-        <el-input v-model="gkWorker"   style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+        <span>归口会签:</span>
+        <el-input v-model="gkWorker" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
         <el-button size="mini" type="success" @click="getGkWorker">查询</el-button>
         <br><br>
         <div class="table_div">
@@ -68,6 +68,7 @@ export default {
     return{
       tableData:[],
       gkWorker:'',
+      wlgroupCode: this.query.wlgroupCode
     }
   },
   methods: {
@@ -97,6 +98,17 @@ export default {
     goBack(){
       this.$router.go(-1);
     }
+  },
+
+  created() {
+    this.$ajax.get(this.apiUrl+'/apply/getGKInit',{
+      params: {
+        wlgroupCode: this.wlgroupCode
+      }
+    }).then(res=>{
+      this.tableData = res.data
+      console.log(res.data)
+    })
   }
 }
 </script>

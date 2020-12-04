@@ -12,7 +12,6 @@
         <span>选择领料仓库:</span>
         <el-input v-model="warehouse"   style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
         <br>
-        <span style="font-size: small;color: #dd6161">仓库加载需要几秒钟时间，请耐心..</span>
         <div class="table_div">
           <el-table
             :data="tableData"
@@ -67,6 +66,11 @@
       },
       //自动加载
       created() {
+
+        this.$message({
+          message:'正在加载仓库信息',
+        })
+
         let code=sessionStorage.getItem("materialCode")
         console.log(code)
         this.$ajax.get(this.apiUrl+'/apply/getWarehouse',{
@@ -77,10 +81,17 @@
           let data=res.data
           console.log(data)
           this.tableData=data
+          if(data == ''){
+            this.$message({
+              message:'查找完成，没有查到仓库信息',
+              type:'success'
+            })
+          }
         })
       },
 
       methods: {
+
         getCurId(row){
           sessionStorage.setItem("warehouseName",row.dsca2);
           sessionStorage.setItem("warehouseCode",row.cwar)
@@ -100,9 +111,8 @@
                 console.log('在选择仓库时确认了，该物品在wms库')
                 sessionStorage.setItem("wmsWorker",data.usnm)
                 console.log(sessionStorage.getItem('wmsWorker'))
-                console.log('接收结束')
               }
-              console.log('跳转开始')
+
               this.$router.push({
                 path:'/applyMain',
               })

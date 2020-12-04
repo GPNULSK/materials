@@ -163,9 +163,6 @@ export default {
     },
     submit(){
       if(this.neWorker==null || this.neWorker==''){
-
-
-
         if(this.readyResult=='' || this.readyResult==null){
           this.$message({
             message:'请选择审核结果',
