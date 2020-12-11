@@ -92,7 +92,7 @@ export default {
           userId:row.usid,
           username:row.usnm
         }
-      })
+      });
       this.$router.go(-1)
     },
     //输入名字搜索

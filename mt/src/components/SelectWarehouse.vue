@@ -28,6 +28,7 @@
             <el-table-column
               label="库存量"
               prop = "qhnd"
+              v-if="false"
               align="center">
             </el-table-column>
 
@@ -113,7 +114,7 @@
                 console.log(sessionStorage.getItem('wmsWorker'))
               }
 
-              this.$router.push({
+              this.$router.replace({
                 path:'/applyMain',
               })
           })

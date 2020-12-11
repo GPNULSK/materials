@@ -102,7 +102,7 @@ export default {
       }).then(res=>{
         if(res.data=='success'){
           sessionStorage.setItem("nextWorker",row.usnm)
-          this.$router.replace('/ready')
+          this.$router.go(-1)
         }else {
           this.$message({
             message:'系统异常，请稍后再试',

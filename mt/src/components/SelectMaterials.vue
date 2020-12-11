@@ -116,10 +116,7 @@
           sessionStorage.setItem("unitcn",row.unitcn);
           sessionStorage.setItem("source",row.lyxx);//物料来源
           sessionStorage.setItem("materialGroupCode",row.wlgroupcode)
-
-          this.$router.push({
-            path:'/applyMain',
-          })
+          this.$router.go(-1)
         },
         getMaterialName(){
           this.$message({
@@ -145,7 +142,6 @@
             this.totalPage=pageList[0]
             this.totalRecord=pageList[1]
 			      console.log(pageList[0])
-
           })
         },
         currentPage(val){

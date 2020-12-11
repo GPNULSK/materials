@@ -274,6 +274,12 @@ export default {
       for(let i=0;i<this.tableData.length;i++){
         this.tableData[i].applyDate=data.time[i]
       }
+    }).catch(err=>{
+      this.tip = '加载失败'
+      this.$message({
+        message:'加载失败',
+        type:'error'
+      })
     })
   }
 }

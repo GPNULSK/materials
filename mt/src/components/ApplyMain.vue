@@ -8,40 +8,39 @@
         </el-page-header>
       </el-header>
       <!-- header结束-->
-
       <!--   main开始-->
-      <el-main style="padding:0">
+      <el-main style="padding:20px;border-style: groove;border-color: rgba(140,197,255,0.14);border-width: 2px ;border-radius:10px">
         <el-form  :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <span>物料代码:</span>
-        <el-input v-on:click.native="toSelectId" v-model="materialCode" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+        <el-input v-on:click.native="toSelectId" v-model="materialCode" v-bind:style="{width: wide+'px'}" size="small" placeholder="请输入内容"></el-input>
         <br><br>
 
         <span>物料名称:</span>
-        <el-input :disabled="true" v-model="materialName" style="width: 200px" size="mini" ></el-input>
+        <el-input :disabled="true" v-model="materialName"v-bind:style="{width: wide+'px'}" size="small" ></el-input>
         <br><br>
 
         <span>物料类型:</span>
-        <el-input :disabled="true" v-model="materialType"  style="width: 200px" size="mini" p></el-input>
+        <el-input :disabled="true" v-model="materialType" v-bind:style="{width: wide+'px'}" size="small" p></el-input>
         <br><br>
 
         <span>计量单位:</span>
-        <el-input :disabled="true" v-model="union"  style="width: 200px" size="mini" ></el-input>
+        <el-input :disabled="true" v-model="union"  v-bind:style="{width: wide+'px'}" size="small" ></el-input>
         <br><br>
 
 
         <span>领料仓库</span>
-        <el-input v-on:click.native="toSelectWarehouse" v-model="warehouseName" style="width: 200px" size="mini" placeholder="请选择仓库"></el-input>
+        <el-input v-on:click.native="toSelectWarehouse" v-model="warehouseName" v-bind:style="{width: wide+'px'}" size="small" placeholder="请选择仓库"></el-input>
         <br><br>
         <span>仓库代码:</span>
-        <el-input :disabled="true" v-model="warehouseCode"  style="width: 200px" size="mini" ></el-input>
+        <el-input :disabled="true" v-model="warehouseCode" v-bind:style="{width: wide+'px'}" size="small" ></el-input>
         <br><br>
 
           <span>库&nbsp;存&nbsp;量:</span>
-          <el-input :disabled="true" :required="true" v-model="storeAccount"  style="width: 200px" size="mini" placeholder="请输入需求量"></el-input>
+          <el-input :disabled="true" :required="true" v-model="storeAccount" v-bind:style="{width: wide+'px'}" size="small" placeholder="请输入需求量"></el-input>
           <br><br>
 
         <span>需&nbsp;求&nbsp;量:</span>
-        <el-input :required="true" v-model="account"  style="width: 200px" size="mini" placeholder="请输入需求量"></el-input>
+        <el-input :required="true" v-model="account"  v-bind:style="{width: wide+'px'}" size="small" placeholder="请输入需求量"></el-input>
         <br><br>
 
 
@@ -49,7 +48,7 @@
 <!--          领料方式-->
         <template>
           <span>领料方式:</span>
-          <el-select size="mini" v-model="getMaterialMethodVal" placeholder="请选择">
+          <el-select size="small" v-model="getMaterialMethodVal" placeholder="请选择" v-bind:style="{width: wide+'px'}">
             <el-option
               v-for="item in getMaterialMethod"
               :key="item.value"
@@ -62,7 +61,7 @@
 <!--          是否紧急-->
           <template>
             <span>是否紧急:</span>
-            <el-select size="mini" v-model="isUrgent" placeholder="请选择">
+            <el-select size="small" v-model="isUrgent" placeholder="请选择" v-bind:style="{width: wide+'px'}">
               <el-option
                 v-for="item in isUrgentForm"
                 :key="item.value"
@@ -73,6 +72,19 @@
           </template>
         <br><br>
 
+          <!--          原因代码 -->
+          <template>
+            <span>原因代码:</span>
+            <el-select size="small" v-model="reasonCode" placeholder="请选择" v-bind:style="{width: wide+'px'}">
+              <el-option
+                v-for="item in reasonCodeOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </template>
+          <br><br>
 
 
 <!--          用途-->
@@ -81,19 +93,19 @@
             type="textarea"
             autosize
             placeholder="请输入内容"
-            style="width: 80%"
+            style="width: 50%"
             v-model="usage"
            >
           </el-input>
           <br><br>
           <span>单位主管:</span>
-          <el-input v-on:click.native="toGetDeptCharger" v-model="charger" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+          <el-input v-on:click.native="toGetDeptCharger" v-model="charger" v-bind:style="{width: wide+'px'}" size="small" placeholder="请输入内容"></el-input>
           <br><br>
           <span>归口部门:</span>
-          <el-input v-on:click.native="GK" v-model="gkWorkerName" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+          <el-input v-on:click.native="GK" v-model="gkWorkerName" v-bind:style="{width: wide+'px'}" size="small" placeholder="请输入内容"></el-input>
           <br><br>
           <span>实物仓管:</span>
-          <el-input v-on:click.native="toGetWarehouseWorker" v-model="warehouseWorker" style="width: 200px" size="mini" placeholder="请输入内容"></el-input>
+          <el-input v-on:click.native="toGetWarehouseWorker" v-model="warehouseWorker" v-bind:style="{width: wide+'px'}" size="small" placeholder="请输入内容"></el-input>
           <br><br>
         </el-form>
       </el-main>
@@ -128,7 +140,11 @@
             storeAccount:'',
             gkWorkerName:'',
             wlgroupCode:'',
-
+            screenWidth: document.body.clientWidth,    // 屏幕宽
+            wide: document.body.clientWidth/2,
+            reasonCodeList:[],
+            reasonCodeOptions:[],
+            reasonCode:'',
             getMaterialMethod:[
               {
                 value:'非生产领用料',
@@ -155,20 +171,19 @@
                 label:'原因代码'
               }
             ],
+
             getMaterialMethodVal:'',
             isUrgent:'',
-            reasonCode:'',
             rules:{
               name:{required: true,message:'此项为必填',trigger: 'blur'},
             }
-
           }
       },
       methods: {
 
         submitApply(){
           if(this.materialName==''||this.warehouseName==''||this.isUrgent==''||
-            this.getMaterialMethodVal==''||this.usage==''||this.account==''||this.charger==''||this.warehouseWorker==''){
+            this.getMaterialMethodVal=='' || this.usage=='' || this.account=='' || this.charger=='' || this.warehouseWorker==''){
             this.$message.error('所有项均为必填项')
             return
             alert('return后面代码')
@@ -196,6 +211,7 @@
               userId:this.$root.uid,
               userDept:'',
               username:this.$root.username,
+              reasonCode:this.reasonCode
             }
           }).then(res=>{
             if (res.data=='success'){
@@ -217,26 +233,16 @@
           sessionStorage.setItem("account",this.account)
           sessionStorage.setItem("isUrgent",this.isUrgent)
           sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
-
-          console.log(sessionStorage.getItem("account"))
+          sessionStorage.setItem('reason',this.reasonCode)
         },
 
 
         toSelectId(){
-
           sessionStorage.setItem("account",this.account)
           sessionStorage.setItem("isUrgent",this.isUrgent)
           sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
-          sessionStorage.setItem('usage',this.usage)
-          if(sessionStorage.getItem("account")==null){
-
-          }
-          if(sessionStorage.getItem("isUrgent")==null){
-
-          }
-          if(sessionStorage.getItem("getMaterialMethod")==null){
-
-          }
+          sessionStorage.setItem('usage',this.usage);
+          sessionStorage.setItem('reason',this.reasonCode)
           this.$router.push({
             path:"/selectId",
           })
@@ -245,7 +251,8 @@
           sessionStorage.setItem("account",this.account)
           sessionStorage.setItem("isUrgent",this.isUrgent)
           sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
-          sessionStorage.setItem('usage',this.usage)
+          sessionStorage.setItem('usage',this.usage);
+          sessionStorage.setItem('reason',this.reasonCode)
           this.$router.push("/getDcharger")
         },
 
@@ -253,11 +260,13 @@
           sessionStorage.setItem("account",this.account)
           sessionStorage.setItem("isUrgent",this.isUrgent)
           sessionStorage.setItem("getMaterialMethod",this.getMaterialMethodVal)
-          sessionStorage.setItem('usage',this.usage)
+          sessionStorage.setItem('usage',this.usage);
+          sessionStorage.setItem('reason',this.reasonCode)
           this.$router.push('/selectByWarehouse')
         },
         toGetWarehouseWorker(){
-          this.storeSomeDate()
+          this.storeSomeDate();
+          sessionStorage.setItem('reason',this.reasonCode);
           this.$router.push("/getWarehouseWorker")
         },
         goBack(){
@@ -281,9 +290,16 @@
       },
       created() {
 
-        if(sessionStorage.length>0){
-          this.wlgroupCode = sessionStorage.getItem('materialGroupCode')
+          //给原因代码下拉框选项赋值
+          let reasonList = sessionStorage.getItem('reasonCode');
+          this.reasonCodeList = reasonList.split(',');
+          for(let i = 0;i<this.reasonCodeList.length;i++){
+            this.reasonCodeOptions.push({value:this.reasonCodeList[i],label:this.reasonCodeList[i]})
+          }
 
+        if(sessionStorage.length>0){
+          this.reasonCode = sessionStorage.getItem('reason')
+          this.wlgroupCode = sessionStorage.getItem('materialGroupCode')
           if(sessionStorage.getItem('usage')!=null){
             this.usage=sessionStorage.getItem('usage')
           }
@@ -313,9 +329,7 @@
 
 		      this.storeAccount=sessionStorage.getItem("inventory")
           this.gkWorkerName=sessionStorage.getItem('gkWorker')
-          console.log(this.warehouseName == '合格品仓库(WMS)')
           if(this.warehouseName == '合格品仓库(WMS)'){
-            console.log('该物品在WMS库')
             console.log(sessionStorage.getItem('wmsWorker'))
             this.warehouseWorker=sessionStorage.getItem('wmsWorker')
           }else {

@@ -113,17 +113,19 @@ import axios from 'axios'
         // 测试使用
         this.$ajax.get(this.apiUrl+'/apply/loginUserInfo',{
           params: {
-            uid:'682504'
+            uid:'114200563'
           }
         }).then(res=>{
-          console.log(res.data)
-          let data=res.data
-          console.log('拿到的用户名：'+data.usnm)
-          this.$root.username=data.usnm
-          this.$root.uid=data.usid
-          this.isAble=false
-          sessionStorage.setItem("curUser",data.usnm)
-          sessionStorage.setItem("curUid",data.usid)
+          console.log(res.data);
+          let data=res.data;
+          console.log(data.dept.reason)
+          sessionStorage.setItem('reasonCode',data.dept.reason)
+          console.log('拿到的用户名：'+data.usnm);
+          this.$root.username=data.usnm;
+          this.$root.uid=data.usid;
+          this.isAble=false;
+          sessionStorage.setItem("curUser",data.usnm);
+          sessionStorage.setItem("curUid",data.usid);
           console.log('拿到的用户id：'+this.$root.uid)
         })
 

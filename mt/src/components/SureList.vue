@@ -6,9 +6,22 @@
       </el-page-header>
     </el-header>
     <el-main>
-      <el-button size='mini' type="success" @click="plSure('agree')">批量通过</el-button>
-      <el-button size='mini' type="error" @click="plSure('rejectToWarehouse')">批量驳回到仓管员</el-button>
-      <el-button size='mini' type="danger" @click="plSure('rejectToApply')">批量驳回</el-button><br>
+
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <el-button size='mini' type="success" @click="plSure('agree')">批量通过</el-button>
+        </el-col>
+        <el-col :span="12">
+          <el-button size='mini' type="error" @click="plSure('rejectToWarehouse')">批量驳回到仓管员</el-button>
+        </el-col>
+        <el-col :span="6">
+          <el-button size='mini' type="danger" @click="plSure('rejectToApply')">批量驳回</el-button>
+        </el-col>
+
+      </el-row>
+
+
+
       <span style="font-size: smaller;color:darkolivegreen;">{{tip}}</span><br><br>
       <template>
         <el-table
@@ -268,6 +281,12 @@ name: "SureList",
         this.tableData[i].applyDate=data.applyTime[i];
         this.tableData[i].readyDate=data.readyTime[i]
       }
+    }).catch(err=>{
+      this.tip ='加载失败'
+      this.$message({
+        message:'加载失败',
+        type:'error'
+      })
     })
   }
 }
